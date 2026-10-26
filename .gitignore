@@ -1,0 +1,40 @@
+# =========================================================================
+# Unified .gitignore for Creamy Monorepo (Laravel + C# WPF)
+# =========================================================================
+
+# Laravel & PHP
+Laravel_Backend/.env
+Laravel_Backend/.env.backup
+Laravel_Backend/.env.production
+Laravel_Backend/vendor/
+Laravel_Backend/storage/*.key
+Laravel_Backend/storage/pail
+Laravel_Backend/storage/framework/cache/data/*
+Laravel_Backend/storage/framework/sessions/*
+Laravel_Backend/storage/framework/testing/*
+Laravel_Backend/storage/framework/views/*
+Laravel_Backend/storage/logs/*.log
+Laravel_Backend/database/*.sqlite
+Laravel_Backend/database/*.sqlite-journal
+Laravel_Backend/public/hot
+Laravel_Backend/public/storage
+Laravel_Backend/node_modules/
+.phpunit.result.cache
+*.log
+
+# .NET / C# / WPF
+**/bin/
+**/obj/
+**/.vs/
+*.user
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.svclog
+
+# OS & IDE Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
