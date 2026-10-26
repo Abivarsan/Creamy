@@ -1,0 +1,228 @@
+<UserControl x:Class="Creamy.WPF.Views.InventoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:Creamy.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:InventoryViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1000"
+             Background="{StaticResource MainBgBrush}">
+
+    <Grid Margin="24">
+        <!-- Main Inventory Content Area -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Top Header & Actions -->
+            <Grid Grid.Row="0" Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Inventory Items" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                    <TextBlock Text="Manage ice cream flavors, pricing, and stock levels." FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0" />
+                </StackPanel>
+
+                <!-- Search & Filter Controls -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBox Style="{StaticResource ModernTextBox}"
+                             Width="220"
+                             Margin="0,0,10,0"
+                             Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding SearchCommand}" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+
+                    <Button Style="{StaticResource OutlineButton}"
+                            Command="{Binding SearchCommand}"
+                            Content="🔍 Search"
+                            Margin="0,0,10,0"
+                            Padding="12,8" />
+
+                    <ComboBox ItemsSource="{Binding Categories}"
+                              SelectedItem="{Binding SelectedCategory}"
+                              Width="130"
+                              Height="36"
+                              VerticalContentAlignment="Center"
+                              Margin="0,0,14,0" />
+
+                    <!-- Add Item Button (Owner & Manager Only) -->
+                    <Button Style="{StaticResource PrimaryButton}"
+                            Command="{Binding OpenCreateDialogCommand}"
+                            Content="+ Add Item"
+                            IsEnabled="{Binding CanCreateItem}"
+                            ToolTip="Add New Ice Cream Item (Owner &amp; Manager only)" />
+                </StackPanel>
+            </Grid>
+
+            <!-- Message / Error Notification Banner -->
+            <Border Grid.Row="1"
+                    CornerRadius="6"
+                    Padding="14,10"
+                    Margin="0,0,0,16"
+                    Visibility="{Binding HasMessage, Converter={StaticResource BoolToVisConverter}}">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="#ecfdf5" />
+                        <Setter Property="BorderBrush" Value="#a7f3d0" />
+                        <Setter Property="BorderThickness" Value="1" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsErrorMessage}" Value="True">
+                                <Setter Property="Background" Value="#fef2f2" />
+                                <Setter Property="BorderBrush" Value="#fecaca" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <TextBlock Text="{Binding Message}" FontWeight="Medium" FontSize="13">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{StaticResource SuccessBrush}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsErrorMessage}" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource DangerBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Border>
+
+            <!-- Items DataGrid -->
+            <Border Grid.Row="2" Background="White" CornerRadius="8" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+                <DataGrid ItemsSource="{Binding Items}"
+                          SelectedItem="{Binding SelectedItem}"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60" />
+                        <DataGridTextColumn Header="Flavor / Name" Binding="{Binding Name}" Width="2*" />
+                        <DataGridTextColumn Header="Category" Binding="{Binding FlavorCategory}" Width="1.2*" />
+                        <DataGridTextColumn Header="Price" Binding="{Binding PriceFormatted}" Width="100" />
+                        <DataGridTextColumn Header="Stock Quantity" Binding="{Binding StockStatus}" Width="140" />
+                        <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="90" />
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*" />
+
+                        <!-- Row Actions (Edit & Delete) -->
+                        <DataGridTemplateColumn Header="Actions" Width="170">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <!-- Edit button: Enabled for All Roles (Cashier can adjust stock) -->
+                                        <Button Style="{StaticResource OutlineButton}"
+                                                Command="{Binding DataContext.OpenEditDialogCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                Content="Edit"
+                                                Margin="0,0,6,0"
+                                                Padding="10,4" />
+
+                                        <!-- Delete button: Enabled for Owner Only -->
+                                        <Button Style="{StaticResource DangerButton}"
+                                                Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                Content="Delete"
+                                                IsEnabled="{Binding DataContext.CanDeleteItem, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                ToolTip="Delete item (Owner role only)" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+        <!-- Add / Edit Item Modal Dialog Overlay -->
+        <Grid Background="#80000000"
+              Visibility="{Binding IsEditorOpen, Converter={StaticResource BoolToVisConverter}}"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <Border Background="White"
+                    CornerRadius="10"
+                    Width="500"
+                    Padding="28"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="25" ShadowDepth="6" Opacity="0.25" Color="#000000" />
+                </Border.Effect>
+
+                <StackPanel>
+                    <TextBlock Text="{Binding EditorTitle}" FontSize="18" FontWeight="Bold" Margin="0,0,0,16" Foreground="{StaticResource TextPrimaryBrush}" />
+
+                    <!-- Flavor Name -->
+                    <TextBlock Text="Item / Flavor Name" FontWeight="SemiBold" Margin="0,0,0,4" />
+                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" />
+
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Flavor Category -->
+                        <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Text="Category" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <ComboBox ItemsSource="{Binding Categories}"
+                                      SelectedItem="{Binding FormCategory}"
+                                      Height="38" />
+                        </StackPanel>
+
+                        <!-- Unit -->
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                            <TextBlock Text="Unit (scoop, tub, etc.)" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormUnit, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Price -->
+                        <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Text="Price ($)" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormPrice, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Quantity -->
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                            <TextBlock Text="Stock Quantity" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormQuantity, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Description -->
+                    <TextBlock Text="Description" FontWeight="SemiBold" Margin="0,0,0,4" />
+                    <TextBox Style="{StaticResource ModernTextBox}"
+                             Text="{Binding FormDescription, UpdateSourceTrigger=PropertyChanged}"
+                             Height="60"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             Margin="0,0,0,20" />
+
+                    <!-- Dialog Actions -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource OutlineButton}"
+                                Command="{Binding CloseFormCommand}"
+                                Content="Cancel"
+                                Margin="0,0,10,0"
+                                Padding="16,8" />
+                        <Button Style="{StaticResource PrimaryButton}"
+                                Command="{Binding SaveFormCommand}"
+                                Content="Save Item"
+                                Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

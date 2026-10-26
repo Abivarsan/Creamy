@@ -1,0 +1,102 @@
+<UserControl x:Class="Creamy.WPF.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:Creamy.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
+             d:DesignHeight="700" d:DesignWidth="900"
+             Background="{StaticResource MainBgBrush}">
+
+    <Grid>
+        <!-- Center Login Card -->
+        <Border Background="White"
+                CornerRadius="12"
+                Width="460"
+                Padding="36"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="1">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="4" Opacity="0.08" Color="#000000" />
+            </Border.Effect>
+
+            <StackPanel>
+                <!-- Logo & Heading -->
+                <TextBlock Text="🍦" FontSize="44" HorizontalAlignment="Center" Margin="0,0,0,8" />
+                <TextBlock Text="Creamy Ice Cream Shop" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="{StaticResource TextPrimaryBrush}" 
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="Sign in to your account" 
+                           FontSize="14" 
+                           Foreground="{StaticResource TextSecondaryBrush}" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,4,0,24" />
+
+                <!-- Error Alert Box -->
+                <Border Background="#fef2f2"
+                        BorderBrush="#fecaca"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="12"
+                        Margin="0,0,0,16"
+                        Visibility="{Binding HasError, Converter={StaticResource BoolToVisConverter}}">
+                    <TextBlock Text="{Binding ErrorMessage}" 
+                               Foreground="{StaticResource DangerBrush}" 
+                               TextWrapping="Wrap" 
+                               FontSize="13" 
+                               FontWeight="Medium" />
+                </Border>
+
+                <!-- Email Input -->
+                <TextBlock Text="Email Address" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,6" />
+                <TextBox Style="{StaticResource ModernTextBox}"
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,16" />
+
+                <!-- Password Input -->
+                <TextBlock Text="Password" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,6" />
+                <TextBox Style="{StaticResource ModernTextBox}"
+                         Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,20" />
+
+                <!-- Login Button -->
+                <Button Style="{StaticResource PrimaryButton}"
+                        Command="{Binding LoginCommand}"
+                        Content="Sign In"
+                        Height="42"
+                        Margin="0,0,0,24" />
+
+                <!-- Quick Test Role Presets (Convenient for Evaluation) -->
+                <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,1,0,0" Padding="0,16,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Quick-Select Test Role (Assessment Demo):" 
+                                   FontSize="12" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="{StaticResource TextSecondaryBrush}" 
+                                   HorizontalAlignment="Center" 
+                                   Margin="0,0,0,10" />
+                        <UniformGrid Columns="3" Margin="0,0,0,4">
+                            <Button Style="{StaticResource OutlineButton}"
+                                    Command="{Binding SetOwnerCredentialsCommand}"
+                                    Content="👑 Owner"
+                                    Margin="2,0" />
+                            <Button Style="{StaticResource OutlineButton}"
+                                    Command="{Binding SetManagerCredentialsCommand}"
+                                    Content="👔 Manager"
+                                    Margin="2,0" />
+                            <Button Style="{StaticResource OutlineButton}"
+                                    Command="{Binding SetCashierCredentialsCommand}"
+                                    Content="🛒 Cashier"
+                                    Margin="2,0" />
+                        </UniformGrid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
