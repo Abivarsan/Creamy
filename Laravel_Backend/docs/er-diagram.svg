@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" width="1000" height="680" style="background-color: #0f172a; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="itemsGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#be185d" />
+    </linearGradient>
+    <linearGradient id="custGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="tokensGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" fill="#f8fafc" font-size="24" font-weight="700" letter-spacing="1">DELIVERGATE ICE CREAM SHOP - ENTITY RELATIONSHIP DIAGRAM</text>
+  <text x="500" y="72" text-anchor="middle" fill="#94a3b8" font-size="14">Option B: Laravel Backend Database Architecture</text>
+
+  <!-- USERS Table -->
+  <g transform="translate(50, 110)" filter="url(#shadow)">
+    <rect width="420" height="230" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2" />
+    <path d="M 0 8 Q 0 0 8 0 L 412 0 Q 420 0 420 8 L 420 40 L 0 40 Z" fill="url(#headerGrad)" />
+    <text x="210" y="26" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="700">USERS (Authentication &amp; RBAC)</text>
+    
+    <text x="20" y="65" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#38bdf8" font-weight="bold">PK</tspan> id : BIGINT UNSIGNED</text>
+    <text x="20" y="90" fill="#f1f5f9" font-size="13" font-family="monospace">   name : VARCHAR(255)</text>
+    <text x="20" y="115" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#fbbf24" font-weight="bold">UK</tspan> email : VARCHAR(255)</text>
+    <text x="20" y="140" fill="#f1f5f9" font-size="13" font-family="monospace">   password : VARCHAR(255)</text>
+    <text x="20" y="165" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#a78bfa" font-weight="bold">EN</tspan> role : ENUM ('owner', 'manager', 'cashier')</text>
+    <text x="20" y="190" fill="#f1f5f9" font-size="13" font-family="monospace">   remember_token : VARCHAR(100) NULL</text>
+    <text x="20" y="215" fill="#f1f5f9" font-size="13" font-family="monospace">   created_at / updated_at : TIMESTAMP</text>
+  </g>
+
+  <!-- PERSONAL ACCESS TOKENS Table -->
+  <g transform="translate(50, 390)" filter="url(#shadow)">
+    <rect width="420" height="240" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2" />
+    <path d="M 0 8 Q 0 0 8 0 L 412 0 Q 420 0 420 8 L 420 40 L 0 40 Z" fill="url(#tokensGrad)" />
+    <text x="210" y="26" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="700">PERSONAL_ACCESS_TOKENS (Sanctum)</text>
+    
+    <text x="20" y="65" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#38bdf8" font-weight="bold">PK</tspan> id : BIGINT UNSIGNED</text>
+    <text x="20" y="90" fill="#f1f5f9" font-size="13" font-family="monospace">   tokenable_type : VARCHAR(255)</text>
+    <text x="20" y="115" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#38bdf8" font-weight="bold">FK</tspan> tokenable_id : BIGINT UNSIGNED</text>
+    <text x="20" y="140" fill="#f1f5f9" font-size="13" font-family="monospace">   name : VARCHAR(255)</text>
+    <text x="20" y="165" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#fbbf24" font-weight="bold">UK</tspan> token : VARCHAR(64)</text>
+    <text x="20" y="190" fill="#f1f5f9" font-size="13" font-family="monospace">   abilities : TEXT NULL</text>
+    <text x="20" y="215" fill="#f1f5f9" font-size="13" font-family="monospace">   last_used_at / expires_at : TIMESTAMP NULL</text>
+  </g>
+
+  <!-- Relationship Line Users -> Tokens -->
+  <line x1="260" y1="340" x2="260" y2="390" stroke="#818cf8" stroke-width="3" stroke-dasharray="6,4" />
+  <circle cx="260" cy="340" r="4" fill="#818cf8" />
+  <polygon points="255,385 260,392 265,385" fill="#818cf8" />
+  <rect x="220" y="353" width="80" height="22" rx="4" fill="#0f172a" stroke="#818cf8" stroke-width="1" />
+  <text x="260" y="368" fill="#c7d2fe" font-size="11" text-anchor="middle" font-weight="600">1 to Many</text>
+
+  <!-- ITEMS Table -->
+  <g transform="translate(530, 110)" filter="url(#shadow)">
+    <rect width="420" height="250" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2" />
+    <path d="M 0 8 Q 0 0 8 0 L 412 0 Q 420 0 420 8 L 420 40 L 0 40 Z" fill="url(#itemsGrad)" />
+    <text x="210" y="26" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="700">ITEMS (Ice Cream Inventory)</text>
+    
+    <text x="20" y="65" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#38bdf8" font-weight="bold">PK</tspan> id : BIGINT UNSIGNED</text>
+    <text x="20" y="90" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#34d399" font-weight="bold">IX</tspan> name : VARCHAR(255) [Searchable]</text>
+    <text x="20" y="115" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#34d399" font-weight="bold">IX</tspan> flavor_category : VARCHAR(100) [Filterable]</text>
+    <text x="20" y="140" fill="#f1f5f9" font-size="13" font-family="monospace">   price : DECIMAL(10, 2)</text>
+    <text x="20" y="165" fill="#f1f5f9" font-size="13" font-family="monospace">   quantity : INT DEFAULT 0 [Stock Level]</text>
+    <text x="20" y="190" fill="#f1f5f9" font-size="13" font-family="monospace">   unit : VARCHAR(50) DEFAULT 'scoop'</text>
+    <text x="20" y="215" fill="#f1f5f9" font-size="13" font-family="monospace">   description : TEXT NULL</text>
+    <text x="20" y="240" fill="#f1f5f9" font-size="13" font-family="monospace">   is_active : BOOLEAN DEFAULT TRUE</text>
+  </g>
+
+  <!-- CUSTOMERS Table -->
+  <g transform="translate(530, 390)" filter="url(#shadow)">
+    <rect width="420" height="240" rx="8" fill="#1e293b" stroke="#334155" stroke-width="2" />
+    <path d="M 0 8 Q 0 0 8 0 L 412 0 Q 420 0 420 8 L 420 40 L 0 40 Z" fill="url(#custGrad)" />
+    <text x="210" y="26" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="700">CUSTOMERS (Client Profiles)</text>
+    
+    <text x="20" y="65" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#38bdf8" font-weight="bold">PK</tspan> id : BIGINT UNSIGNED</text>
+    <text x="20" y="90" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#34d399" font-weight="bold">IX</tspan> name : VARCHAR(255) [Searchable]</text>
+    <text x="20" y="115" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#34d399" font-weight="bold">IX</tspan> email : VARCHAR(255) NULL [Searchable]</text>
+    <text x="20" y="140" fill="#f1f5f9" font-size="13" font-family="monospace"><tspan fill="#34d399" font-weight="bold">IX</tspan> phone : VARCHAR(50) [Searchable]</text>
+    <text x="20" y="165" fill="#f1f5f9" font-size="13" font-family="monospace">   address : TEXT NULL</text>
+    <text x="20" y="190" fill="#f1f5f9" font-size="13" font-family="monospace">   notes : TEXT NULL</text>
+    <text x="20" y="215" fill="#f1f5f9" font-size="13" font-family="monospace">   created_at / updated_at : TIMESTAMP</text>
+  </g>
+
+</svg>
