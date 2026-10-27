@@ -1,6 +1,6 @@
 # Creamy - Ice Cream Shop Management System (Backend API)
 
-> **Delivergate Backend Engineer Intern Practical Exam — Option B (Laravel with MySQL)**
+> ** Option B (Laravel with MySQL)**
 
 A production-ready RESTful backend API built with **Laravel 11+**, **MySQL**, and **Laravel Sanctum**. This application manages inventory items across ice cream flavor categories and customer records, enforced with strict **Role-Based Access Control (RBAC)** for **Owner**, **Manager**, and **Cashier** roles.
 
