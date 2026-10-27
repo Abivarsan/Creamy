@@ -29,7 +29,7 @@ Creamy/
 │   ├── phpunit.xml                      # Automated testing configuration
 │   └── README.md                        # Dedicated Laravel backend documentation
 │
-├── C#_WPF_Application/                  # Bonus: C# WPF Desktop Client (.NET 8)
+├── C#_WPF_Application/                  # C# WPF Desktop Client (.NET 8)
 │   ├── Models/                          # Data models (User, Item, Customer, ApiResponse)
 │   ├── Services/                        # ApiService (HttpClient + Token Auth) & AuthSession
 │   ├── ViewModels/                      # MVVM ViewModels (Main, Login, Inventory, Customer)
