@@ -51,7 +51,11 @@ namespace Creamy.WPF.ViewModels
 
         public event Action<User>? LoginSuccessful;
 
-        public LoginViewModel(IApiService? apiService = null)
+        public LoginViewModel() : this(null)
+        {
+        }
+
+        public LoginViewModel(IApiService? apiService)
         {
             _apiService = apiService ?? ApiService.Instance;
 

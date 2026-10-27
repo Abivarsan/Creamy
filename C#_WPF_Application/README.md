@@ -98,9 +98,27 @@ dotnet build
 ```
 
 ### Step 3: Run the Application
+
+You can launch the desktop application using any of the following methods:
+
+#### Method A: From Terminal
 ```bash
+# From inside C#_WPF_Application:
 dotnet run
+
+# Or from the repository root:
+dotnet run --project C#_WPF_Application/Creamy.WPF.csproj
 ```
+
+#### Method B: Direct Executable (.exe)
+You can directly double-click the compiled application in Windows Explorer:
+```text
+C#_WPF_Application\bin\Debug\net8.0-windows\Creamy.WPF.exe
+```
+
+#### Method C: Visual Studio / VS Code
+* **Visual Studio**: Open `Creamy.WPF.csproj` and press **F5** or **Ctrl + F5**.
+* **VS Code**: Run via terminal or run/debug configuration.
 
 ---
 

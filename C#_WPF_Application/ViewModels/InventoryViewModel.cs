@@ -150,7 +150,11 @@ namespace Creamy.WPF.ViewModels
         public ICommand CloseFormCommand { get; }
         public ICommand DeleteItemCommand { get; }
 
-        public InventoryViewModel(IApiService? apiService = null)
+        public InventoryViewModel() : this(null)
+        {
+        }
+
+        public InventoryViewModel(IApiService? apiService)
         {
             _apiService = apiService ?? ApiService.Instance;
 

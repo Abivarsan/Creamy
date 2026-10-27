@@ -10,11 +10,8 @@
         Height="780" Width="1200"
         MinHeight="650" MinWidth="950"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource MainBgBrush}">
-
-    <Window.DataContext>
-        <viewmodels:MainViewModel />
-    </Window.DataContext>
+        Background="{StaticResource MainBgBrush}"
+        d:DataContext="{d:DesignInstance viewmodels:MainViewModel}">
 
     <Window.Resources>
         <!-- DataTemplates mapping ViewModels to Views -->

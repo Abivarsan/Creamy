@@ -1,4 +1,5 @@
 using System.Windows;
+using Creamy.WPF.ViewModels;
 
 namespace Creamy.WPF.Views
 {
@@ -7,6 +8,7 @@ namespace Creamy.WPF.Views
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }

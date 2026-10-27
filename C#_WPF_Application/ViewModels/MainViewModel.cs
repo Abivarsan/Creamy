@@ -40,7 +40,11 @@ namespace Creamy.WPF.ViewModels
         public ICommand NavigateCustomersCommand { get; }
         public ICommand LogoutCommand { get; }
 
-        public MainViewModel(IApiService? apiService = null)
+        public MainViewModel() : this(null)
+        {
+        }
+
+        public MainViewModel(IApiService? apiService)
         {
             _apiService = apiService ?? ApiService.Instance;
 

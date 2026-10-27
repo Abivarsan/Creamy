@@ -126,7 +126,11 @@ namespace Creamy.WPF.ViewModels
         public ICommand CloseFormCommand { get; }
         public ICommand DeleteCustomerCommand { get; }
 
-        public CustomerViewModel(IApiService? apiService = null)
+        public CustomerViewModel() : this(null)
+        {
+        }
+
+        public CustomerViewModel(IApiService? apiService)
         {
             _apiService = apiService ?? ApiService.Instance;
 
