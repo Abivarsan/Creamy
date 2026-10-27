@@ -8,14 +8,14 @@ namespace Creamy.WPF.ViewModels
     {
         private readonly IApiService _apiService;
 
-        private string _email = "owner@delivergate.com";
+        private string _email = "owner@creamy.com";
         public string Email
         {
             get => _email;
             set => SetField(ref _email, value);
         }
 
-        private string _password = "Password123!";
+        private string _password = "Owner@123";
         public string Password
         {
             get => _password;
@@ -59,22 +59,22 @@ namespace Creamy.WPF.ViewModels
 
             SetOwnerCredentialsCommand = new RelayCommand(() =>
             {
-                Email = "owner@delivergate.com";
-                Password = "Password123!";
+                Email = "owner@creamy.com";
+                Password = "Owner@123";
                 ErrorMessage = null;
             });
 
             SetManagerCredentialsCommand = new RelayCommand(() =>
             {
-                Email = "manager@delivergate.com";
-                Password = "Password123!";
+                Email = "manager1@creamy.com";
+                Password = "Manager1@123";
                 ErrorMessage = null;
             });
 
             SetCashierCredentialsCommand = new RelayCommand(() =>
             {
-                Email = "cashier@delivergate.com";
-                Password = "Password123!";
+                Email = "cashier1@creamy.com";
+                Password = "cashier1@123";
                 ErrorMessage = null;
             });
         }

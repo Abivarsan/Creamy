@@ -20,8 +20,8 @@ class AuthTest extends TestCase
 
         $this->owner = User::create([
             'name' => 'Store Owner',
-            'email' => 'owner@delivergate.com',
-            'password' => Hash::make('Password123!'),
+            'email' => 'owner@creamy.com',
+            'password' => Hash::make('Owner@123'),
             'role' => UserRole::OWNER,
         ]);
     }
@@ -29,8 +29,8 @@ class AuthTest extends TestCase
     public function test_user_can_login_with_valid_credentials(): void
     {
         $response = $this->postJson('/api/auth/login', [
-            'email' => 'owner@delivergate.com',
-            'password' => 'Password123!',
+            'email' => 'owner@creamy.com',
+            'password' => 'Owner@123',
         ]);
 
         $response->assertOk()
@@ -47,7 +47,7 @@ class AuthTest extends TestCase
                 'status' => 'success',
                 'data' => [
                     'user' => [
-                        'email' => 'owner@delivergate.com',
+                        'email' => 'owner@creamy.com',
                         'role' => 'owner',
                     ],
                 ],
@@ -57,7 +57,7 @@ class AuthTest extends TestCase
     public function test_login_fails_with_invalid_password(): void
     {
         $response = $this->postJson('/api/auth/login', [
-            'email' => 'owner@delivergate.com',
+            'email' => 'owner@creamy.com',
             'password' => 'WrongPassword',
         ]);
 
@@ -85,7 +85,7 @@ class AuthTest extends TestCase
             ->assertJson([
                 'status' => 'success',
                 'data' => [
-                    'email' => 'owner@delivergate.com',
+                    'email' => 'owner@creamy.com',
                     'role' => 'owner',
                 ],
             ]);

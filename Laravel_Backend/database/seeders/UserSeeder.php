@@ -19,20 +19,20 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'name' => 'Store Owner',
-                'email' => 'owner@delivergate.com',
-                'password' => Hash::make('Password123!'),
+                'email' => 'owner@creamy.com',
+                'password' => Hash::make('Owner@123'),
                 'role' => UserRole::OWNER,
             ],
             [
                 'name' => 'Store Manager',
-                'email' => 'manager@delivergate.com',
-                'password' => Hash::make('Password123!'),
+                'email' => 'manager1@creamy.com',
+                'password' => Hash::make('Manager1@123'),
                 'role' => UserRole::MANAGER,
             ],
             [
                 'name' => 'Store Cashier',
-                'email' => 'cashier@delivergate.com',
-                'password' => Hash::make('Password123!'),
+                'email' => 'cashier1@creamy.com',
+                'password' => Hash::make('cashier1@123'),
                 'role' => UserRole::CASHIER,
             ],
         ];

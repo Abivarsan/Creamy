@@ -108,8 +108,8 @@ dotnet run
 
 | Role | Email | Password | Allowed Capabilities in WPF |
 |---|---|---|---|
-| **Owner** | `owner@delivergate.com` | `Password123!` | Full CRUD on inventory and customers. Can delete records. |
-| **Manager** | `manager@delivergate.com` | `Password123!` | Can view, add, and edit items and customers. Delete button is disabled. |
-| **Cashier** | `cashier@delivergate.com` | `Password123!` | Can view and edit items (update stock). Can view, add, and edit customers. Add item and Delete buttons are disabled. |
+| **Owner** | `owner@creamy.com` | `Owner@123` | Full CRUD on inventory and customers. Can delete records. |
+| **Manager** | `manager1@creamy.com` | `Manager1@123` | Can view, add, and edit items and customers. Delete button is disabled. |
+| **Cashier** | `cashier1@creamy.com` | `cashier1@123` | Can view and edit items (update stock). Can view, add, and edit customers. Add item and Delete buttons are disabled. |
 
 *(Tip: On the login screen, click any of the 3 quick-select role buttons to instantly populate the credentials!)*

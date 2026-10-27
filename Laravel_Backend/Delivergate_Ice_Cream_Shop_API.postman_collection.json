@@ -44,7 +44,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"owner@delivergate.com\",\n    \"password\": \"Password123!\"\n}"
+							"raw": "{\n    \"email\": \"owner@creamy.com\",\n    \"password\": \"Owner@123\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/auth/login",
@@ -96,7 +96,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"manager@delivergate.com\",\n    \"password\": \"Password123!\"\n}"
+							"raw": "{\n    \"email\": \"manager1@creamy.com\",\n    \"password\": \"Manager1@123\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/auth/login",
@@ -148,7 +148,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"cashier@delivergate.com\",\n    \"password\": \"Password123!\"\n}"
+							"raw": "{\n    \"email\": \"cashier1@creamy.com\",\n    \"password\": \"cashier1@123\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/auth/login",

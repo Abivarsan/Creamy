@@ -56,9 +56,9 @@ The database seeder automatically provisions test accounts for each role with kn
 
 | Role | Email Address | Password | Permissions Summary |
 |---|---|---|---|
-| **Owner** | `owner@delivergate.com` | `Password123!` | Full control over inventory items and customer records (CRUD). |
-| **Manager** | `manager@delivergate.com` | `Password123!` | Can add, view, and edit items and customers; **cannot delete** either. |
-| **Cashier** | `cashier@delivergate.com` | `Password123!` | Can view and edit items (adjust stock), can add/view/edit customers; **cannot add/delete items, cannot delete customers**. |
+| **Owner** | `owner@creamy.com` | `Owner@123` | Full control over inventory items and customer records (CRUD). |
+| **Manager** | `manager1@creamy.com` | `Manager1@123` | Can add, view, and edit items and customers; **cannot delete** either. |
+| **Cashier** | `cashier1@creamy.com` | `cashier1@123` | Can view and edit items (adjust stock), can add/view/edit customers; **cannot add/delete items, cannot delete customers**. |
 
 ---
 
@@ -277,8 +277,8 @@ Base URL: `http://127.0.0.1:8000/api`
 - **Request Body**:
 ```json
 {
-  "email": "owner@delivergate.com",
-  "password": "Password123!"
+  "email": "owner@creamy.com",
+  "password": "Owner@123"
 }
 ```
 - **Response (`200 OK`)**:
@@ -292,7 +292,7 @@ Base URL: `http://127.0.0.1:8000/api`
     "user": {
       "id": 1,
       "name": "Store Owner",
-      "email": "owner@delivergate.com",
+      "email": "owner@creamy.com",
       "role": "owner",
       "created_at": "2026-10-26T15:54:15.000000Z",
       "updated_at": "2026-10-26T15:54:15.000000Z"
