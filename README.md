@@ -1,6 +1,5 @@
 # Creamy - Ice Cream Shop Management System
 
-> **Delivergate Backend Engineer Intern Practical Exam**  
 > **Candidate Repository**: [https://github.com/Abivarsan/Creamy.git](https://github.com/Abivarsan/Creamy.git)
 
 This repository contains the complete technical assessment solution for the **Backend Engineer Intern** position at **Delivergate**. It includes both the core **Laravel RESTful Backend API** (Option B) and the **C# WPF Desktop Application**.
