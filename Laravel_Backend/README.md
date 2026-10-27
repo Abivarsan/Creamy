@@ -103,8 +103,10 @@ Creamy/
 │       ├── ItemSeeder.php              # Provisions Chocolate, Vanilla, Strawberry inventory
 │       └── CustomerSeeder.php          # Provisions sample customer profiles
 ├── docs/
-│   ├── er-diagram.md                   # Full database data dictionary & Mermaid diagram
-│   ├── er-diagram.svg                  # Standalone vector SVG ER diagram
+│   ├── er-diagram.md                   # Crow's Foot data dictionary & schema
+│   ├── er-diagram.svg                  # Crow's Foot vector SVG ER diagram
+│   ├── er-diagram-chen.md              # Chen notation conceptual guide & draw.io tutorial
+│   ├── er-diagram-chen.svg             # Chen notation vector SVG ER diagram
 │   └── Delivergate_Ice_Cream_Shop_API.postman_collection.json # Exportable Postman collection
 ├── routes/
 │   └── api.php                         # RESTful API routes under /api
@@ -125,10 +127,14 @@ Creamy/
 
 The database structure features indexing on search fields (`name`, `flavor_category`, `phone`, `email`) and full foreign-key / polymorphic token integrity.
 
-View the vector graphic diagram: [docs/er-diagram.svg](docs/er-diagram.svg)  
-View the data dictionary: [docs/er-diagram.md](docs/er-diagram.md)
+- **Crow's Foot Notation (Relational Schema)**:
+  - Vector Graphic: [`docs/er-diagram.svg`](../docs/er-diagram.svg)
+  - Data Dictionary & Schema: [`docs/er-diagram.md`](../docs/er-diagram.md)
+- **Chen Notation (Conceptual Model)**:
+  - Vector Graphic: [`docs/er-diagram-chen.svg`](../docs/er-diagram-chen.svg)
+  - Conceptual Guide & draw.io Tutorial: [`docs/er-diagram-chen.md`](../docs/er-diagram-chen.md)
 
-### Entity Relationship Model
+### Entity Relationship Model (Relational)
 
 ```mermaid
 erDiagram

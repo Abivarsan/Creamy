@@ -41,8 +41,10 @@ Creamy/
 │   └── README.md                        # Dedicated C# WPF desktop documentation
 │
 ├── docs/                                # Project-wide deliverables
-│   ├── er-diagram.svg                   # Standalone vector SVG ER diagram
-│   ├── er-diagram.md                    # Data dictionary & Mermaid source
+│   ├── er-diagram.svg                   # Crow's Foot vector SVG ER diagram
+│   ├── er-diagram.md                    # Crow's Foot data dictionary & schema
+│   ├── er-diagram-chen.svg              # Chen notation vector SVG ER diagram
+│   ├── er-diagram-chen.md               # Chen notation guide & draw.io tutorial
 │   └── Delivergate_Ice_Cream_Shop_API.postman_collection.json # Ready-to-import Postman collection
 │
 ├── .gitignore                           # Unified gitignore for Laravel and .NET
@@ -155,5 +157,7 @@ Duration: 1.48s
 Per Section 10 of the assessment instructions:
 - [x] **Source Code**: Public GitHub repository structure with clean commit history.
 - [x] **Postman API Collection**: Included at [`docs/Delivergate_Ice_Cream_Shop_API.postman_collection.json`](docs/Delivergate_Ice_Cream_Shop_API.postman_collection.json).
-- [x] **ER Diagram**: Included at [`docs/er-diagram.svg`](docs/er-diagram.svg) and [`docs/er-diagram.md`](docs/er-diagram.md).
+- [x] **ER Diagrams**: 
+  - **Crow's Foot Notation**: [`docs/er-diagram.svg`](docs/er-diagram.svg) & [`docs/er-diagram.md`](docs/er-diagram.md)
+  - **Chen Notation**: [`docs/er-diagram-chen.svg`](docs/er-diagram-chen.svg) & [`docs/er-diagram-chen.md`](docs/er-diagram-chen.md) (with draw.io manual guide)
 - [x] **C# WPF Application**: Fully implemented under `C#_WPF_Application/`.

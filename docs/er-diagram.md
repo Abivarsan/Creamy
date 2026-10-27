@@ -1,9 +1,13 @@
-# Delivergate Ice Cream Shop Management System - Database Design & ER Diagram
+# Delivergate Ice Cream Shop Management System - Database Design & ER Diagram (Crow's Foot Notation)
 
 ## 1. Overview
-This document specifies the database schema and Entity-Relationship (ER) model for the Delivergate Ice Cream Shop backend assessment.
+This document specifies the physical database schema and Entity-Relationship (ER) model for the Delivergate Ice Cream Shop backend assessment using **Crow's Foot Notation**.
 
 The database is designed with high data integrity, strict typing, indexing on frequently queried columns (such as names, phone numbers, and categories for search optimization), and built-in support for token-based authentication (Laravel Sanctum).
+
+> 💡 **Looking for Chen Notation?**  
+> We also provide the complete conceptual ER model in **Peter Chen's Notation (1976)** with standalone vector graphics and draw.io recreation instructions:  
+> 🔗 **[`docs/er-diagram-chen.svg`](er-diagram-chen.svg)** (Vector Graphic) &nbsp;|&nbsp; 🔗 **[`docs/er-diagram-chen.md`](er-diagram-chen.md)** (Full Guide)
 
 ---
 
