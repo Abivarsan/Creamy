@@ -1,6 +1,6 @@
 # Creamy - C# WPF Desktop Application
 
-> **Delivergate Backend Engineer Intern Practical Exam — Bonus Track (C# WPF Application)**
+> **C# WPF Application**
 
 A modern, responsive desktop application built with **C#**, **WPF**, and **.NET 8** following the **Model-View-ViewModel (MVVM)** architectural pattern. It directly consumes the RESTful APIs exposed by the Laravel backend (`Laravel_Backend`).
 
