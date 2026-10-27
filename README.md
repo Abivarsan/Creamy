@@ -65,7 +65,7 @@ Creamy/
   * 29 automated tests with 103 assertions passing in under 2 seconds.
 * 👉 **[Read the Full Laravel Backend Documentation & Setup Guide](Laravel_Backend/README.md)**
 
-### 2. [C# WPF Desktop Application (Bonus Track)](C#_WPF_Application/README.md)
+### 2. [C# WPF Desktop Application](C#_WPF_Application/README.md)
 * **Technology**: C#, WPF, .NET 8 (`net8.0-windows`)
 * **Architecture**: Model-View-ViewModel (MVVM) pattern with `HttpClient` service layer
 * **Key Features**:
