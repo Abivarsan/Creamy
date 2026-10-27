@@ -412,21 +412,3 @@ A fully configured Postman collection is included in the project:
 
 ---
 
-## 💡 Technical Decisions & Assessment Q&A
-
-This section prepares you to explain the architectural decisions confidently during technical evaluation:
-
-### 1. Why Laravel Sanctum over Laravel Passport?
-* **Answer**: Laravel Sanctum provides token-based API authentication designed specifically for SPAs, mobile apps, and first-party desktop clients (such as the optional C# WPF app). Passport implements a full OAuth2 server (Client Credentials, Authorization Code grants, cryptographic RSA keys) which adds unnecessary complexity and database overhead for an internal shop management API. Sanctum is lightweight, fast, secure, and idiomatic.
-
-### 2. How is Role-Based Access Control (RBAC) enforced?
-* **Answer**: Authorization is enforced using **Laravel Policies** (`ItemPolicy` and `CustomerPolicy`) paired with backed PHP 8.1+ Enums (`UserRole`). Rather than hardcoding conditional role checks inside controllers, authorization is handled via policy methods (`create`, `update`, `delete`, `view`). When a forbidden action is attempted (e.g., Cashier trying to add an item, or Manager trying to delete a customer), Laravel automatically returns HTTP `403 Forbidden`.
-
-### 3. Why use Form Request classes?
-* **Answer**: By extracting validation into dedicated Form Request classes (`StoreItemRequest`, `UpdateItemRequest`, etc.), controllers adhere to the Single Responsibility Principle. Requests are validated before the controller method executes; invalid requests immediately return standard HTTP `422 Unprocessable Content` with specific error messages.
-
-### 4. Why use API Resources (`JsonResource`)?
-* **Answer**: API Resources decouple database table structure from the API output contract. They allow us to cast numbers (e.g., formatting price to 2 decimal places), format ISO-8601 timestamps, and ensure internal database columns (such as password hashes or session tokens) are never leaked to API consumers.
-
-### 5. How are search queries optimized?
-* **Answer**: We implemented Eloquent local query scopes (`scopeSearch` and `scopeCategory`) on the models and added database indexes on `name`, `flavor_category`, `phone`, and `email` columns in the migrations. This ensures database queries remain performant even as the inventory and customer dataset grows.
