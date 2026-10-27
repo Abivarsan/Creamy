@@ -107,7 +107,7 @@ Creamy/
 │   ├── er-diagram.svg                  # Crow's Foot vector SVG ER diagram
 │   ├── er-diagram-chen.md              # Chen notation conceptual guide & draw.io tutorial
 │   ├── er-diagram-chen.svg             # Chen notation vector SVG ER diagram
-│   └── Delivergate_Ice_Cream_Shop_API.postman_collection.json # Exportable Postman collection
+│   └── Creamy_Ice_Cream_Shop_API.postman_collection.json # Exportable Postman collection
 ├── routes/
 │   └── api.php                         # RESTful API routes under /api
 ├── tests/
@@ -402,10 +402,10 @@ Base URL: `http://127.0.0.1:8000/api`
 ## 📮 Postman API Collection
 
 A fully configured Postman collection is included in the project:
-`Delivergate_Ice_Cream_Shop_API.postman_collection.json` (also located in `docs/`).
+`Creamy_Ice_Cream_Shop_API.postman_collection.json` (also located in `docs/`).
 
 ### How to use:
-1. Open Postman -> Click **Import** -> Select `Delivergate_Ice_Cream_Shop_API.postman_collection.json`.
+1. Open Postman -> Click **Import** -> Select `Creamy_Ice_Cream_Shop_API.postman_collection.json`.
 2. Under collection variables, `baseUrl` is pre-set to `http://localhost:8000`.
 3. Run the **Login - Store Owner**, **Login - Store Manager**, or **Login - Store Cashier** request.
 4. **Auto-Token Script**: The collection includes a post-response test script that automatically extracts the bearer token from the login response and saves it into the `{{authToken}}` variable. Subsequent requests automatically inherit this token.
