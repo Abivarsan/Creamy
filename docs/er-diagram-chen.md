@@ -1,4 +1,4 @@
-# Delivergate Ice Cream Shop Management System - ER Diagram (Chen Notation)
+# Creamy Ice Cream Shop Management System - ER Diagram (Chen Notation)
 
 ## 1. Overview
 
