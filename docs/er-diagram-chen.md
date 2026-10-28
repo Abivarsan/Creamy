@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-This document presents the **Conceptual Entity-Relationship (ER) Model** for the Delivergate Ice Cream Shop backend using **Peter Chen's Notation (1976)**. 
+This document presents the **Conceptual Entity-Relationship (ER) Model** for the Creamy Ice Cream Shop backend using **Peter Chen's Notation (1976)**. 
 
 While the Crow's Foot notation ([`docs/er-diagram.svg`](er-diagram.svg) and [`docs/er-diagram.md`](er-diagram.md)) models the physical relational database schema (tables, foreign keys, and indexes), Chen's notation models the domain at the **conceptual level**, highlighting:
 - **Entities** as real-world objects or concepts.
