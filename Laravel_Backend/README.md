@@ -54,11 +54,11 @@ An ice cream parlor sells various flavors grouped into categories (e.g., Chocola
 
 The database seeder automatically provisions test accounts for each role with known credentials:
 
-| Role | Email Address | Password | Permissions Summary |
-|---|---|---|---|
-| **Owner** | `owner@creamy.com` | `Owner@123` | Full control over inventory items and customer records (CRUD). |
-| **Manager** | `manager1@creamy.com` | `Manager1@123` | Can add, view, and edit items and customers; **cannot delete** either. |
-| **Cashier** | `cashier1@creamy.com` | `cashier1@123` | Can view and edit items (adjust stock), can add/view/edit customers; **cannot add/delete items, cannot delete customers**. |
+| Role | Name | Email Address | Password | Permissions Summary |
+|---|---|---|---|---|
+| **Owner** | Kaveen Silva | `owner@creamy.com` | `Owner@123` | Full control over inventory items and customer records (CRUD). |
+| **Manager** | Dinuka Jayawardena | `manager1@creamy.com` | `Manager1@123` | Can add, view, and edit items and customers; **cannot delete** either. |
+| **Cashier** | Thilini Fernando | `cashier1@creamy.com` | `cashier1@123` | Can view and edit items (adjust stock), can add/view/edit customers; **cannot add/delete items, cannot delete customers**. |
 
 ---
 
@@ -340,10 +340,10 @@ Base URL: `http://127.0.0.1:8000/api`
 {
   "name": "Pistachio Almond Delight",
   "flavor_category": "Nut",
-  "price": 5.25,
+  "price": 750.00,
   "quantity": 50,
   "unit": "scoop",
-  "description": "Roasted Sicilian pistachios with caramelized almond slivers.",
+  "description": "Roasted pistachios with caramelized almond slivers.",
   "is_active": true
 }
 ```
@@ -354,7 +354,7 @@ Base URL: `http://127.0.0.1:8000/api`
 - **Request Body**:
 ```json
 {
-  "price": 4.95,
+  "price": 700.00,
   "quantity": 42
 }
 ```
@@ -370,7 +370,7 @@ Base URL: `http://127.0.0.1:8000/api`
 #### List Customers (With Search)
 - **Endpoint**: `GET /api/customers`
 - **Query Parameters**:
-  - `search`: Filter by customer name, phone, or email (e.g. `?search=Alice` or `?search=0102`)
+  - `search`: Filter by customer name, phone, or email (e.g. `?search=Kasun` or `?search=4567`)
 
 #### Get Single Customer
 - **Endpoint**: `GET /api/customers/{id}`
@@ -381,11 +381,11 @@ Base URL: `http://127.0.0.1:8000/api`
 - **Request Body**:
 ```json
 {
-  "name": "Emily Watson",
-  "email": "emily.watson@example.com",
-  "phone": "+1-555-0199",
-  "address": "45 Sunset Strip, Beverly Hills",
-  "notes": "Prefers gluten-free waffle cones."
+  "name": "Kavindi Jayawardena",
+  "email": "kavindi.j@gmail.com",
+  "phone": "+94 77 987 6543",
+  "address": "No. 18, Flower Road, Colombo 07",
+  "notes": "Loves Kithul treacle with extra roasted cashews."
 }
 ```
 

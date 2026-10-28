@@ -24,21 +24,21 @@ class ItemManagementTest extends TestCase
         parent::setUp();
 
         $this->owner = User::create([
-            'name' => 'Store Owner',
+            'name' => 'Kaveen Silva',
             'email' => 'owner@creamy.com',
             'password' => Hash::make('Owner@123'),
             'role' => UserRole::OWNER,
         ]);
 
         $this->manager = User::create([
-            'name' => 'Store Manager',
+            'name' => 'Dinuka Jayawardena',
             'email' => 'manager1@creamy.com',
             'password' => Hash::make('Manager1@123'),
             'role' => UserRole::MANAGER,
         ]);
 
         $this->cashier = User::create([
-            'name' => 'Store Cashier',
+            'name' => 'Thilini Fernando',
             'email' => 'cashier1@creamy.com',
             'password' => Hash::make('cashier1@123'),
             'role' => UserRole::CASHIER,
@@ -47,7 +47,7 @@ class ItemManagementTest extends TestCase
         $this->chocolateItem = Item::create([
             'name' => 'Belgian Dark Chocolate Supreme',
             'flavor_category' => 'Chocolate',
-            'price' => 4.50,
+            'price' => 650.00,
             'quantity' => 100,
             'unit' => 'scoop',
             'description' => 'Rich dark cocoa ice cream.',
@@ -57,7 +57,7 @@ class ItemManagementTest extends TestCase
         $this->vanillaItem = Item::create([
             'name' => 'Madagascar Vanilla Bean',
             'flavor_category' => 'Vanilla',
-            'price' => 3.99,
+            'price' => 550.00,
             'quantity' => 150,
             'unit' => 'scoop',
             'description' => 'Classic vanilla bean flavor.',
@@ -106,7 +106,7 @@ class ItemManagementTest extends TestCase
         $payload = [
             'name' => 'Wild Strawberry Swirl',
             'flavor_category' => 'Strawberry',
-            'price' => 4.25,
+            'price' => 600.00,
             'quantity' => 60,
             'unit' => 'scoop',
             'description' => 'Fresh strawberry flavor.',
@@ -126,7 +126,7 @@ class ItemManagementTest extends TestCase
         $payload = [
             'name' => 'Mango Passionfruit Sorbet',
             'flavor_category' => 'Fruit',
-            'price' => 4.10,
+            'price' => 650.00,
             'quantity' => 45,
             'unit' => 'scoop',
         ];
@@ -144,7 +144,7 @@ class ItemManagementTest extends TestCase
         $payload = [
             'name' => 'Salted Caramel Crunch',
             'flavor_category' => 'Caramel',
-            'price' => 4.90,
+            'price' => 750.00,
             'quantity' => 30,
         ];
 

@@ -248,7 +248,7 @@
                         </DataGridTemplateColumn>
 
                         <!-- Price -->
-                        <DataGridTemplateColumn Header="UNIT PRICE" Width="1.1*">
+                        <DataGridTemplateColumn Header="UNIT PRICE (RS.)" Width="1.1*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding PriceFormatted}" FontWeight="Bold" Foreground="#047857" VerticalAlignment="Center" FontSize="13" />
@@ -362,7 +362,7 @@
 
                         <!-- Price -->
                         <StackPanel Grid.Column="0" Margin="0,0,8,0">
-                            <TextBlock Text="Selling Price ($)" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
+                            <TextBlock Text="Selling Price (Rs. / LKR)" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                             <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormPrice, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 

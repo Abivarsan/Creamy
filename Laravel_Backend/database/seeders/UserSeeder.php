@@ -18,19 +18,19 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Store Owner',
+                'name' => 'Kaveen Silva',
                 'email' => 'owner@creamy.com',
                 'password' => Hash::make('Owner@123'),
                 'role' => UserRole::OWNER,
             ],
             [
-                'name' => 'Store Manager',
+                'name' => 'Dinuka Jayawardena',
                 'email' => 'manager1@creamy.com',
                 'password' => Hash::make('Manager1@123'),
                 'role' => UserRole::MANAGER,
             ],
             [
-                'name' => 'Store Cashier',
+                'name' => 'Thilini Fernando',
                 'email' => 'cashier1@creamy.com',
                 'password' => Hash::make('cashier1@123'),
                 'role' => UserRole::CASHIER,

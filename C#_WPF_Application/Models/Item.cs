@@ -28,7 +28,7 @@ namespace Creamy.WPF.Models
         [JsonPropertyName("is_active")]
         public bool IsActive { get; set; } = true;
 
-        public string PriceFormatted => $"${Price:F2}";
+        public string PriceFormatted => $"Rs. {Price:N2}";
         public string StockStatus => Quantity > 0 ? $"{Quantity} {Unit}(s)" : "Out of Stock";
 
         // Modern UI Helpers

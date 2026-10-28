@@ -96,11 +96,11 @@ Creamy/
 
 The database seeder pre-populates three test users with known credentials:
 
-| Role | Email Address | Password | Permissions Summary |
-|---|---|---|---|
-| **Owner** | `owner@creamy.com` | `Owner@123` | Full control over inventory items and customer records (CRUD). |
-| **Manager** | `manager1@creamy.com` | `Manager1@123` | Can add, view, and edit items and customers; **cannot delete** either. |
-| **Cashier** | `cashier1@creamy.com` | `cashier1@123` | Can view and edit items (adjust stock), can add/view/edit customers; **cannot add/delete items, cannot delete customers**. |
+| Role | Name | Email Address | Password | Permissions Summary |
+|---|---|---|---|---|
+| **Owner** | Kaveen Silva | `owner@creamy.com` | `Owner@123` | Full control over inventory items and customer records (CRUD). |
+| **Manager** | Dinuka Jayawardena | `manager1@creamy.com` | `Manager1@123` | Can add, view, and edit items and customers; **cannot delete** either. |
+| **Cashier** | Thilini Fernando | `cashier1@creamy.com` | `cashier1@123` | Can view and edit items (adjust stock), can add/view/edit customers; **cannot add/delete items, cannot delete customers**. |
 
 ---
 

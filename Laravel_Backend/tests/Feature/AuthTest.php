@@ -19,7 +19,7 @@ class AuthTest extends TestCase
         parent::setUp();
 
         $this->owner = User::create([
-            'name' => 'Store Owner',
+            'name' => 'Kaveen Silva',
             'email' => 'owner@creamy.com',
             'password' => Hash::make('Owner@123'),
             'role' => UserRole::OWNER,

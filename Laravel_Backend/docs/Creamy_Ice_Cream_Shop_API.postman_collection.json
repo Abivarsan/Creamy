@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "c88f3e5b-4d7a-4c91-a67b-12a8435d7990",
-		"name": "Creamy Ice Cream Shop API ",
-		"description": "Postman API Collection for Creamy Backend.\n\nFeatures:\n- Authentication via Laravel Sanctum (Owner, Manager, Cashier)\n- Role-Based Access Control (RBAC)\n- Inventory Management CRUD with Name & Category Search\n- Customer Management CRUD with Search\n- Automated bearer token assignment on login",
+		"name": "Delivergate Ice Cream Shop API (Creamy)",
+		"description": "Postman API Collection for Delivergate Backend Engineer Intern Practical Exam (Option B: Laravel).\n\nFeatures:\n- Authentication via Laravel Sanctum (Owner, Manager, Cashier)\n- Role-Based Access Control (RBAC)\n- Inventory Management CRUD with Name & Category Search\n- Customer Management CRUD with Search\n- Automated bearer token assignment on login",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -427,7 +427,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Pistachio Almond Delight\",\n    \"flavor_category\": \"Nut\",\n    \"price\": 5.25,\n    \"quantity\": 50,\n    \"unit\": \"scoop\",\n    \"description\": \"Roasted Sicilian pistachios with caramelized almond slivers.\",\n    \"is_active\": true\n}"
+							"raw": "{\n    \"name\": \"Pistachio Almond Delight\",\n    \"flavor_category\": \"Nut\",\n    \"price\": 750.00,\n    \"quantity\": 50,\n    \"unit\": \"scoop\",\n    \"description\": \"Roasted pistachios with caramelized almond slivers.\",\n    \"is_active\": true\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/items",
@@ -471,7 +471,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"price\": 4.75,\n    \"quantity\": 110\n}"
+							"raw": "{\n    \"price\": 700.00,\n    \"quantity\": 110\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/items/1",
@@ -676,7 +676,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Emily Watson\",\n    \"email\": \"emily.watson@example.com\",\n    \"phone\": \"+1-555-0199\",\n    \"address\": \"45 Sunset Strip, Beverly Hills\",\n    \"notes\": \"Loves strawberry shortcake crunch and mint chocolate.\"\n}"
+							"raw": "{\n    \"name\": \"Kavindi Jayawardena\",\n    \"email\": \"kavindi.j@gmail.com\",\n    \"phone\": \"+94 77 987 6543\",\n    \"address\": \"No. 18, Flower Road, Colombo 07\",\n    \"notes\": \"Loves Kithul treacle with extra roasted cashews.\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/customers",
@@ -720,7 +720,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"phone\": \"+1-555-7788\",\n    \"notes\": \"Updated contact preference.\"\n}"
+							"raw": "{\n    \"phone\": \"+94 77 889 9001\",\n    \"notes\": \"Updated contact preference in Colombo.\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/customers/1",
