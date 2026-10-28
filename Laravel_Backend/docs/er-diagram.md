@@ -1,7 +1,7 @@
-# Delivergate Ice Cream Shop Management System - Database Design & ER Diagram
+# Cramy Ice Cream Shop Management System - Database Design & ER Diagram
 
 ## 1. Overview
-This document specifies the database schema and Entity-Relationship (ER) model for the Delivergate Ice Cream Shop backend assessment.
+This document specifies the database schema and Entity-Relationship (ER) model for the Delivergate Ice Cream Shop backend.
 
 The database is designed with high data integrity, strict typing, indexing on frequently queried columns (such as names, phone numbers, and categories for search optimization), and built-in support for token-based authentication (Laravel Sanctum).
 
