@@ -18,15 +18,17 @@
             <Ellipse Canvas.Left="-80" Canvas.Bottom="-80" Width="350" Height="350" Fill="#10ec4899" />
         </Canvas>
 
-        <!-- Center Floating Login Card -->
-        <Border Background="White"
-                CornerRadius="18"
-                Width="500"
-                Padding="40,36"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="1">
+        <!-- Center Floating Login Card in ScrollViewer for small screens -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <Border Background="White"
+                    CornerRadius="18"
+                    Width="500"
+                    Margin="0,24"
+                    Padding="40,36"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="1">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" ShadowDepth="6" Opacity="0.08" Color="#0f172a" />
             </Border.Effect>
@@ -86,7 +88,7 @@
                 <!-- Submit Sign In Button -->
                 <Button Style="{StaticResource PrimaryButton}"
                         Command="{Binding LoginCommand}"
-                        Content="Sign In to Terminal →"
+                        Content="{Binding LoginButtonText}"
                         Height="46"
                         FontSize="14"
                         Margin="0,0,0,24" />
@@ -192,5 +194,6 @@
                 </Border>
             </StackPanel>
         </Border>
+        </ScrollViewer>
     </Grid>
 </UserControl>

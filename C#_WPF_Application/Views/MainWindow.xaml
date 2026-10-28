@@ -7,8 +7,8 @@
         xmlns:views="clr-namespace:Creamy.WPF.Views"
         mc:Ignorable="d"
         Title="Creamy - Artisan Ice Cream Shop Management Portal" 
-        Height="820" Width="1280"
-        MinHeight="680" MinWidth="1024"
+        Height="720" Width="1180"
+        MinHeight="600" MinWidth="960"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MainBgBrush}"
         d:DataContext="{d:DesignInstance viewmodels:MainViewModel}">

@@ -41,8 +41,16 @@ namespace Creamy.WPF.ViewModels
         public bool IsLoading
         {
             get => _isLoading;
-            set => SetField(ref _isLoading, value);
+            set
+            {
+                if (SetField(ref _isLoading, value))
+                {
+                    OnPropertyChanged(nameof(LoginButtonText));
+                }
+            }
         }
+
+        public string LoginButtonText => IsLoading ? "⏳ Connecting to server..." : "Sign In to Terminal →";
 
         private string _selectedRolePreset = "owner";
         public string SelectedRolePreset

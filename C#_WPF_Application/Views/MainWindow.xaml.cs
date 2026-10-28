@@ -9,6 +9,14 @@ namespace Creamy.WPF.Views
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+
+            Loaded += (s, e) =>
+            {
+                Activate();
+                Topmost = true;
+                Topmost = false;
+                Focus();
+            };
         }
     }
 }
