@@ -6,9 +6,9 @@
         xmlns:viewmodels="clr-namespace:Creamy.WPF.ViewModels"
         xmlns:views="clr-namespace:Creamy.WPF.Views"
         mc:Ignorable="d"
-        Title="Creamy - Ice Cream Shop Management (Delivergate Assessment)" 
-        Height="780" Width="1200"
-        MinHeight="650" MinWidth="950"
+        Title="Creamy - Artisan Ice Cream Shop Management Portal" 
+        Height="820" Width="1280"
+        MinHeight="680" MinWidth="1024"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MainBgBrush}"
         d:DataContext="{d:DesignInstance viewmodels:MainViewModel}">
@@ -34,10 +34,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Modern Dark Slate Sidebar -->
+        <!-- ==================== MODERN SIDEBAR ==================== -->
         <Border Grid.Column="0"
-                Background="{StaticResource SidebarBgBrush}"
-                Width="240"
+                Background="{StaticResource SidebarGradient}"
+                Width="260"
+                BorderBrush="#1e293b"
+                BorderThickness="0,0,1,0"
                 Visibility="{Binding IsAuthenticated, Converter={StaticResource BoolToVisConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -46,63 +48,85 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- App Brand / Header -->
-                <Border Grid.Row="0" Padding="20,24" BorderBrush="#334155" BorderThickness="0,0,0,1">
+                <!-- Brand / Logo Header -->
+                <Border Grid.Row="0" Padding="24,28" BorderBrush="#1e293b" BorderThickness="0,0,0,1">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                            <TextBlock Text="🍦" FontSize="26" VerticalAlignment="Center" Margin="0,0,10,0" />
-                            <TextBlock Text="Creamy" FontSize="22" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" />
+                            <Border Width="40" Height="40" CornerRadius="10" Background="{StaticResource PrimaryGradient}" Margin="0,0,12,0">
+                                <TextBlock Text="🍦" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Creamy" FontSize="20" FontWeight="Bold" Foreground="White" />
+                                <TextBlock Text="Artisan Shop POS" FontSize="11" FontWeight="Medium" Foreground="#94a3b8" />
+                            </StackPanel>
                         </StackPanel>
-                        <TextBlock Text="Shop Management System" FontSize="11" Foreground="#94a3b8" />
                     </StackPanel>
                 </Border>
 
-                <!-- Navigation Links -->
-                <StackPanel Grid.Row="1" Margin="12,20,12,0">
-                    <!-- Inventory Items Button -->
+                <!-- Navigation Menu Links -->
+                <StackPanel Grid.Row="1" Margin="14,24,14,0">
+                    <TextBlock Text="MAIN NAVIGATION" 
+                               FontSize="10.5" 
+                               FontWeight="Bold" 
+                               Foreground="#64748b" 
+                               Margin="12,0,0,12" />
+
+                    <!-- Inventory Items Navigation Button -->
                     <Button Command="{Binding NavigateInventoryCommand}"
                             Background="Transparent"
                             BorderThickness="0"
-                            HorizontalContentAlignment="Left"
-                            Padding="14,12"
+                            HorizontalContentAlignment="Stretch"
+                            Padding="0"
                             Margin="0,0,0,6"
                             Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="📦" FontSize="16" Margin="0,0,12,0" />
-                                        <TextBlock Text="Inventory Items" FontSize="14" FontWeight="SemiBold" Foreground="#f8fafc" />
-                                    </StackPanel>
+                                <Border x:Name="navBorder" CornerRadius="10" Padding="14,12" Background="Transparent">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="📦" FontSize="17" Margin="0,0,12,0" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Text="Inventory Catalog" FontSize="13.5" FontWeight="SemiBold" Foreground="#f1f5f9" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="2" Text="→" FontSize="12" Foreground="#64748b" VerticalAlignment="Center" />
+                                    </Grid>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource SidebarActiveBrush}" />
+                                        <Setter TargetName="navBorder" Property="Background" Value="#1e293b" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
 
-                    <!-- Customers Button -->
+                    <!-- Customers Navigation Button -->
                     <Button Command="{Binding NavigateCustomersCommand}"
                             Background="Transparent"
                             BorderThickness="0"
-                            HorizontalContentAlignment="Left"
-                            Padding="14,12"
+                            HorizontalContentAlignment="Stretch"
+                            Padding="0"
                             Margin="0,0,0,6"
                             Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="👥" FontSize="16" Margin="0,0,12,0" />
-                                        <TextBlock Text="Customer Records" FontSize="14" FontWeight="SemiBold" Foreground="#f8fafc" />
-                                    </StackPanel>
+                                <Border x:Name="navBorder" CornerRadius="10" Padding="14,12" Background="Transparent">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="👥" FontSize="17" Margin="0,0,12,0" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="1" Text="Customer Profiles" FontSize="13.5" FontWeight="SemiBold" Foreground="#f1f5f9" VerticalAlignment="Center" />
+                                        <TextBlock Grid.Column="2" Text="→" FontSize="12" Foreground="#64748b" VerticalAlignment="Center" />
+                                    </Grid>
                                 </Border>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource SidebarActiveBrush}" />
+                                        <Setter TargetName="navBorder" Property="Background" Value="#1e293b" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -110,32 +134,102 @@
                     </Button>
                 </StackPanel>
 
-                <!-- User Profile & Logout Section -->
-                <Border Grid.Row="2" Background="#0f172a" Padding="16,20">
+                <!-- Authenticated User Profile & Sign Out Footer Card -->
+                <Border Grid.Row="2" Background="#070c18" BorderBrush="#1e293b" BorderThickness="0,1,0,0" Padding="18,20">
                     <StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <TextBlock Text="{Binding UserDisplayName}" FontWeight="Bold" Foreground="White" FontSize="14" VerticalAlignment="Center" />
-                            <!-- Role Badge -->
-                            <Border Background="{Binding RoleBadgeColor}" CornerRadius="4" Padding="6,2" Margin="10,0,0,0">
-                                <TextBlock Text="{Binding RoleBadge}" FontSize="10" FontWeight="Bold" Foreground="White" />
+                        <!-- User Info with Initials Avatar -->
+                        <Grid Margin="0,0,0,14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- User Initials Circle -->
+                            <Border Grid.Column="0" 
+                                    Width="42" Height="42" 
+                                    CornerRadius="21" 
+                                    Background="{StaticResource PrimaryGradient}" 
+                                    Margin="0,0,12,0">
+                                <TextBlock Text="{Binding CurrentUser.Initials}" 
+                                           FontWeight="Bold" 
+                                           FontSize="15" 
+                                           Foreground="White" 
+                                           HorizontalAlignment="Center" 
+                                           VerticalAlignment="Center" />
                             </Border>
-                        </StackPanel>
 
-                        <TextBlock Text="{Binding CurrentUser.Email}" FontSize="12" Foreground="#94a3b8" Margin="0,0,0,14" />
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding UserDisplayName}" FontWeight="Bold" Foreground="White" FontSize="13.5" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                                    <!-- Role Badge with glowing dot -->
+                                    <Border Background="{Binding RoleBadgeColor}" CornerRadius="12" Padding="8,2">
+                                        <TextBlock Text="{Binding RoleBadge}" FontSize="9.5" FontWeight="Bold" Foreground="White" />
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
 
-                        <!-- Logout Button -->
+                        <TextBlock Text="{Binding CurrentUser.Email}" FontSize="11.5" Foreground="#94a3b8" Margin="0,0,0,14" TextTrimming="CharacterEllipsis" />
+
+                        <!-- Sign Out Button -->
                         <Button Command="{Binding LogoutCommand}"
-                                Style="{StaticResource OutlineButton}"
                                 Content="🚪 Sign Out"
+                                Style="{StaticResource OutlineButton}"
                                 HorizontalAlignment="Stretch"
+                                Background="#1e1b4b"
                                 Foreground="#f87171"
-                                BorderBrush="#475569" />
+                                BorderBrush="#3730a3" />
                     </StackPanel>
                 </Border>
             </Grid>
         </Border>
 
-        <!-- Main View Host Area -->
-        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" />
+        <!-- ==================== MAIN CONTENT HOST ==================== -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <!-- Top Header Bar (When Authenticated) -->
+                <RowDefinition Height="Auto" />
+                <!-- Active View Container -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Top Header Bar with Live Info -->
+            <Border Grid.Row="0"
+                    Background="White"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="0,0,0,1"
+                    Padding="28,16"
+                    Visibility="{Binding IsAuthenticated, Converter={StaticResource BoolToVisConverter}}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="Store Operations Portal" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Real-time synchronized inventory &amp; customer database" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,2,0,0" />
+                    </StackPanel>
+
+                    <!-- Status Pill & Date -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <!-- Date Display -->
+                        <Border Background="#f1f5f9" CornerRadius="8" Padding="12,6" Margin="0,0,12,0">
+                            <TextBlock Text="{Binding CurrentDateDisplay}" FontSize="12" FontWeight="SemiBold" Foreground="#475569" />
+                        </Border>
+
+                        <!-- API Status Pill -->
+                        <Border Background="#ecfdf5" BorderBrush="#a7f3d0" BorderThickness="1" CornerRadius="8" Padding="12,6">
+                            <TextBlock Text="{Binding ApiStatusDisplay}" FontSize="12" FontWeight="Bold" Foreground="#059669" />
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Active View Host Control -->
+            <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
+        </Grid>
     </Grid>
 </Window>

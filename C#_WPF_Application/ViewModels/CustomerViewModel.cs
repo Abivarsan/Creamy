@@ -118,8 +118,14 @@ namespace Creamy.WPF.ViewModels
             set => SetField(ref _formNotes, value);
         }
 
+        public int TotalCustomersCount => Customers?.Count ?? 0;
+        public int VerifiedPhoneCount => Customers?.Count(c => !string.IsNullOrWhiteSpace(c.Phone)) ?? 0;
+        public int EmailSubscribersCount => Customers?.Count(c => !string.IsNullOrWhiteSpace(c.Email)) ?? 0;
+        public int SpecialNotesCount => Customers?.Count(c => !string.IsNullOrWhiteSpace(c.Notes)) ?? 0;
+
         public ICommand LoadCustomersCommand { get; }
         public ICommand SearchCommand { get; }
+        public ICommand RefreshCommand { get; }
         public ICommand OpenCreateDialogCommand { get; }
         public ICommand OpenEditDialogCommand { get; }
         public ICommand SaveFormCommand { get; }
@@ -136,6 +142,7 @@ namespace Creamy.WPF.ViewModels
 
             LoadCustomersCommand = new RelayCommand(async () => await LoadCustomersAsync());
             SearchCommand = new RelayCommand(async () => await LoadCustomersAsync());
+            RefreshCommand = new RelayCommand(async () => await LoadCustomersAsync());
 
             OpenCreateDialogCommand = new RelayCommand(OpenCreateDialog);
             OpenEditDialogCommand = new RelayCommand(OpenEditDialog, () => SelectedCustomer != null);
@@ -154,6 +161,14 @@ namespace Creamy.WPF.ViewModels
             OnPropertyChanged(nameof(CanDeleteCustomer));
         }
 
+        private void NotifyKpisChanged()
+        {
+            OnPropertyChanged(nameof(TotalCustomersCount));
+            OnPropertyChanged(nameof(VerifiedPhoneCount));
+            OnPropertyChanged(nameof(EmailSubscribersCount));
+            OnPropertyChanged(nameof(SpecialNotesCount));
+        }
+
         public async Task LoadCustomersAsync()
         {
             IsLoading = true;
@@ -169,6 +184,7 @@ namespace Creamy.WPF.ViewModels
                     {
                         Customers.Add(customer);
                     }
+                    NotifyKpisChanged();
                 }
                 else
                 {

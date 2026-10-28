@@ -44,6 +44,13 @@ namespace Creamy.WPF.ViewModels
             set => SetField(ref _isLoading, value);
         }
 
+        private string _selectedRolePreset = "owner";
+        public string SelectedRolePreset
+        {
+            get => _selectedRolePreset;
+            set => SetField(ref _selectedRolePreset, value);
+        }
+
         public ICommand LoginCommand { get; }
         public ICommand SetOwnerCredentialsCommand { get; }
         public ICommand SetManagerCredentialsCommand { get; }
@@ -65,6 +72,7 @@ namespace Creamy.WPF.ViewModels
             {
                 Email = "owner@creamy.com";
                 Password = "Owner@123";
+                SelectedRolePreset = "owner";
                 ErrorMessage = null;
             });
 
@@ -72,6 +80,7 @@ namespace Creamy.WPF.ViewModels
             {
                 Email = "manager1@creamy.com";
                 Password = "Manager1@123";
+                SelectedRolePreset = "manager";
                 ErrorMessage = null;
             });
 
@@ -79,6 +88,7 @@ namespace Creamy.WPF.ViewModels
             {
                 Email = "cashier1@creamy.com";
                 Password = "cashier1@123";
+                SelectedRolePreset = "cashier";
                 ErrorMessage = null;
             });
         }

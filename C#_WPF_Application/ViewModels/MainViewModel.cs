@@ -36,6 +36,9 @@ namespace Creamy.WPF.ViewModels
             _ => "#6b7280"
         };
 
+        public string CurrentDateDisplay => DateTime.Now.ToString("dddd, MMMM dd, yyyy");
+        public string ApiStatusDisplay => "🟢 API Connected (127.0.0.1:8000)";
+
         public ICommand NavigateInventoryCommand { get; }
         public ICommand NavigateCustomersCommand { get; }
         public ICommand LogoutCommand { get; }

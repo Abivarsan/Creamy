@@ -142,8 +142,15 @@ namespace Creamy.WPF.ViewModels
             set => SetField(ref _formDescription, value);
         }
 
+        public int TotalFlavorsCount => Items?.Count ?? 0;
+        public int TotalStockQuantity => Items?.Sum(i => i.Quantity) ?? 0;
+        public int LowStockCount => Items?.Count(i => i.Quantity > 0 && i.Quantity <= 10) ?? 0;
+        public int OutOfStockCount => Items?.Count(i => i.Quantity == 0) ?? 0;
+        public int ActiveCategoriesCount => Items?.Select(i => i.FlavorCategory).Distinct(StringComparer.OrdinalIgnoreCase).Count() ?? 0;
+
         public ICommand LoadItemsCommand { get; }
         public ICommand SearchCommand { get; }
+        public ICommand RefreshCommand { get; }
         public ICommand OpenCreateDialogCommand { get; }
         public ICommand OpenEditDialogCommand { get; }
         public ICommand SaveFormCommand { get; }
@@ -160,6 +167,7 @@ namespace Creamy.WPF.ViewModels
 
             LoadItemsCommand = new RelayCommand(async () => await LoadItemsAsync());
             SearchCommand = new RelayCommand(async () => await LoadItemsAsync());
+            RefreshCommand = new RelayCommand(async () => await LoadItemsAsync());
 
             OpenCreateDialogCommand = new RelayCommand(OpenCreateDialog);
             OpenEditDialogCommand = new RelayCommand(OpenEditDialog, () => SelectedItem != null);
@@ -178,6 +186,15 @@ namespace Creamy.WPF.ViewModels
             OnPropertyChanged(nameof(CanDeleteItem));
         }
 
+        private void NotifyKpisChanged()
+        {
+            OnPropertyChanged(nameof(TotalFlavorsCount));
+            OnPropertyChanged(nameof(TotalStockQuantity));
+            OnPropertyChanged(nameof(LowStockCount));
+            OnPropertyChanged(nameof(OutOfStockCount));
+            OnPropertyChanged(nameof(ActiveCategoriesCount));
+        }
+
         public async Task LoadItemsAsync()
         {
             IsLoading = true;
@@ -193,6 +210,7 @@ namespace Creamy.WPF.ViewModels
                     {
                         Items.Add(item);
                     }
+                    NotifyKpisChanged();
                 }
                 else
                 {

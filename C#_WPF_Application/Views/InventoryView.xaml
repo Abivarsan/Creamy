@@ -6,84 +6,198 @@
              xmlns:viewmodels="clr-namespace:Creamy.WPF.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:InventoryViewModel}"
-             d:DesignHeight="700" d:DesignWidth="1000"
+             d:DesignHeight="750" d:DesignWidth="1050"
              Background="{StaticResource MainBgBrush}">
 
-    <Grid Margin="24">
-        <!-- Main Inventory Content Area -->
+    <Grid Margin="28,24,28,24">
+        <!-- Main Inventory Container -->
         <Grid>
             <Grid.RowDefinitions>
+                <!-- Row 0: KPI Summary Metric Cards -->
                 <RowDefinition Height="Auto" />
+                <!-- Row 1: Search & Actions Bar -->
                 <RowDefinition Height="Auto" />
+                <!-- Row 2: Status Toast Banner -->
+                <RowDefinition Height="Auto" />
+                <!-- Row 3: Items DataGrid Card -->
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Top Header & Actions -->
-            <Grid Grid.Row="0" Margin="0,0,0,16">
+            <!-- ==================== 1. KPI SUMMARY METRIC CARDS ==================== -->
+            <Grid Grid.Row="0" Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="Inventory Items" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
-                    <TextBlock Text="Manage ice cream flavors, pricing, and stock levels." FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0" />
-                </StackPanel>
+                <!-- KPI Card 1: Total Flavors -->
+                <Border Grid.Column="0" Margin="0,0,12,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="TOTAL FLAVORS" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding TotalFlavorsCount}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#e0e7ff" VerticalAlignment="Center">
+                            <TextBlock Text="🍨" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
 
-                <!-- Search & Filter Controls -->
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBox Style="{StaticResource ModernTextBox}"
-                             Width="220"
-                             Margin="0,0,10,0"
-                             Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.InputBindings>
-                            <KeyBinding Key="Return" Command="{Binding SearchCommand}" />
-                        </TextBox.InputBindings>
-                    </TextBox>
+                <!-- KPI Card 2: Total Stock in Hand -->
+                <Border Grid.Column="1" Margin="6,0,6,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="TOTAL STOCK (UNITS)" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding TotalStockQuantity}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#ecfdf5" VerticalAlignment="Center">
+                            <TextBlock Text="📦" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
 
-                    <Button Style="{StaticResource OutlineButton}"
-                            Command="{Binding SearchCommand}"
-                            Content="🔍 Search"
-                            Margin="0,0,10,0"
-                            Padding="12,8" />
+                <!-- KPI Card 3: Low Stock Warning -->
+                <Border Grid.Column="2" Margin="6,0,6,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="LOW STOCK ALERTS" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding LowStockCount}" FontSize="24" FontWeight="Bold" Foreground="#f59e0b" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#fffbeb" VerticalAlignment="Center">
+                            <TextBlock Text="⚠️" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
 
-                    <ComboBox ItemsSource="{Binding Categories}"
-                              SelectedItem="{Binding SelectedCategory}"
-                              Width="130"
-                              Height="36"
-                              VerticalContentAlignment="Center"
-                              Margin="0,0,14,0" />
-
-                    <!-- Add Item Button (Owner & Manager Only) -->
-                    <Button Style="{StaticResource PrimaryButton}"
-                            Command="{Binding OpenCreateDialogCommand}"
-                            Content="+ Add Item"
-                            IsEnabled="{Binding CanCreateItem}"
-                            ToolTip="Add New Ice Cream Item (Owner &amp; Manager only)" />
-                </StackPanel>
+                <!-- KPI Card 4: Categories Count -->
+                <Border Grid.Column="3" Margin="12,0,0,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="CATEGORIES" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding ActiveCategoriesCount}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#fdf2f8" VerticalAlignment="Center">
+                            <TextBlock Text="🏷️" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
             </Grid>
 
-            <!-- Message / Error Notification Banner -->
-            <Border Grid.Row="1"
-                    CornerRadius="6"
+            <!-- ==================== 2. SEARCH & ACTIONS BAR ==================== -->
+            <Border Grid.Row="1" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,14" Margin="0,0,0,18">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="14" ShadowDepth="2" Opacity="0.03" Color="#0f172a" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left: Title summary -->
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,24,0">
+                        <TextBlock Text="Inventory Catalog" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Search, filter, and adjust store inventory levels" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                    </StackPanel>
+
+                    <!-- Right Controls: Search, Filter, Buttons -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!-- Search Box -->
+                        <TextBox Style="{StaticResource ModernTextBox}"
+                                 Width="230"
+                                 Margin="0,0,10,0"
+                                 Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding SearchCommand}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+
+                        <!-- Search Button -->
+                        <Button Style="{StaticResource OutlineButton}"
+                                Command="{Binding SearchCommand}"
+                                Content="🔍 Search"
+                                Margin="0,0,10,0"
+                                Height="38" />
+
+                        <!-- Category Dropdown Filter -->
+                        <ComboBox ItemsSource="{Binding Categories}"
+                                  SelectedItem="{Binding SelectedCategory}"
+                                  Width="135"
+                                  Height="38"
+                                  VerticalContentAlignment="Center"
+                                  Margin="0,0,12,0" />
+
+                        <!-- Refresh Button -->
+                        <Button Style="{StaticResource OutlineButton}"
+                                Command="{Binding RefreshCommand}"
+                                Content="🔄"
+                                ToolTip="Reload Inventory from API"
+                                Margin="0,0,12,0"
+                                Height="38" />
+
+                        <!-- Add Item Primary Button (RBAC: Owner & Manager only) -->
+                        <Button Style="{StaticResource PrimaryButton}"
+                                Command="{Binding OpenCreateDialogCommand}"
+                                Content="+ Add Flavor"
+                                Height="38"
+                                IsEnabled="{Binding CanCreateItem}"
+                                ToolTip="Add New Ice Cream Item (Owner &amp; Manager only)" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ==================== 3. NOTIFICATION BANNER ==================== -->
+            <Border Grid.Row="2"
+                    CornerRadius="8"
                     Padding="14,10"
-                    Margin="0,0,0,16"
+                    Margin="0,0,0,14"
                     Visibility="{Binding HasMessage, Converter={StaticResource BoolToVisConverter}}">
                 <Border.Style>
                     <Style TargetType="Border">
-                        <Setter Property="Background" Value="#ecfdf5" />
-                        <Setter Property="BorderBrush" Value="#a7f3d0" />
+                        <Setter Property="Background" Value="{StaticResource SuccessBgBrush}" />
+                        <Setter Property="BorderBrush" Value="{StaticResource SuccessBorderBrush}" />
                         <Setter Property="BorderThickness" Value="1" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsErrorMessage}" Value="True">
-                                <Setter Property="Background" Value="#fef2f2" />
-                                <Setter Property="BorderBrush" Value="#fecaca" />
+                                <Setter Property="Background" Value="{StaticResource DangerBgBrush}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource DangerBorderBrush}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
 
-                <TextBlock Text="{Binding Message}" FontWeight="Medium" FontSize="13">
+                <TextBlock Text="{Binding Message}" FontWeight="SemiBold" FontSize="12.5">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="Foreground" Value="{StaticResource SuccessBrush}" />
@@ -97,36 +211,81 @@
                 </TextBlock>
             </Border>
 
-            <!-- Items DataGrid -->
-            <Border Grid.Row="2" Background="White" CornerRadius="8" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <!-- ==================== 4. ITEMS DATAGRID CARD ==================== -->
+            <Border Grid.Row="3" Background="White" CornerRadius="14" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" ClipToBounds="True">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.04" Color="#0f172a" />
+                </Border.Effect>
+
                 <DataGrid ItemsSource="{Binding Items}"
                           SelectedItem="{Binding SelectedItem}"
                           AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60" />
-                        <DataGridTextColumn Header="Flavor / Name" Binding="{Binding Name}" Width="2*" />
-                        <DataGridTextColumn Header="Category" Binding="{Binding FlavorCategory}" Width="1.2*" />
-                        <DataGridTextColumn Header="Price" Binding="{Binding PriceFormatted}" Width="100" />
-                        <DataGridTextColumn Header="Stock Quantity" Binding="{Binding StockStatus}" Width="140" />
-                        <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="90" />
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*" />
+                        <!-- ID -->
+                        <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="50" />
 
-                        <!-- Row Actions (Edit & Delete) -->
-                        <DataGridTemplateColumn Header="Actions" Width="170">
+                        <!-- Name -->
+                        <DataGridTemplateColumn Header="FLAVOR NAME" Width="2.2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <!-- Edit button: Enabled for All Roles (Cashier can adjust stock) -->
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" FontSize="13" />
+                                        <TextBlock Text="{Binding Description}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" Margin="0,2,0,0" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Category Pill -->
+                        <DataGridTemplateColumn Header="CATEGORY" Width="1.4*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding CategoryBadgeBg}" CornerRadius="12" Padding="10,4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding FlavorCategory}" Foreground="{Binding CategoryBadgeFg}" FontWeight="Bold" FontSize="11" />
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Price -->
+                        <DataGridTemplateColumn Header="UNIT PRICE" Width="1.1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PriceFormatted}" FontWeight="Bold" Foreground="#047857" VerticalAlignment="Center" FontSize="13" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Stock Status Badge -->
+                        <DataGridTemplateColumn Header="STOCK AVAILABILITY" Width="1.6*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border Background="{Binding StockBadgeBg}" CornerRadius="12" Padding="10,4" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Ellipse Width="7" Height="7" Fill="{Binding StockBadgeDot}" Margin="0,0,6,0" VerticalAlignment="Center" />
+                                            <TextBlock Text="{Binding StockStatus}" Foreground="{Binding StockBadgeFg}" FontWeight="SemiBold" FontSize="11.5" VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Actions (Edit & Delete) -->
+                        <DataGridTemplateColumn Header="ACTIONS" Width="170">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <!-- Edit button (All roles) -->
                                         <Button Style="{StaticResource OutlineButton}"
                                                 Command="{Binding DataContext.OpenEditDialogCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                Content="Edit"
+                                                Content="✏️ Edit"
                                                 Margin="0,0,6,0"
                                                 Padding="10,4" />
 
-                                        <!-- Delete button: Enabled for Owner Only -->
+                                        <!-- Delete button (Owner only) -->
                                         <Button Style="{StaticResource DangerButton}"
                                                 Command="{Binding DataContext.DeleteItemCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                Content="Delete"
+                                                Content="🗑️ Delete"
                                                 IsEnabled="{Binding DataContext.CanDeleteItem, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                 ToolTip="Delete item (Owner role only)" />
                                     </StackPanel>
@@ -138,37 +297,50 @@
             </Border>
         </Grid>
 
-        <!-- Add / Edit Item Modal Dialog Overlay -->
-        <Grid Background="#80000000"
+        <!-- ==================== 5. ADD / EDIT ITEM MODAL OVERLAY ==================== -->
+        <Grid Background="#700f172a"
               Visibility="{Binding IsEditorOpen, Converter={StaticResource BoolToVisConverter}}"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
             <Border Background="White"
-                    CornerRadius="10"
-                    Width="500"
-                    Padding="28"
+                    CornerRadius="16"
+                    Width="520"
+                    Padding="32"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="25" ShadowDepth="6" Opacity="0.25" Color="#000000" />
+                    <DropShadowEffect BlurRadius="35" ShadowDepth="8" Opacity="0.25" Color="#000000" />
                 </Border.Effect>
 
                 <StackPanel>
-                    <TextBlock Text="{Binding EditorTitle}" FontSize="18" FontWeight="Bold" Margin="0,0,0,16" Foreground="{StaticResource TextPrimaryBrush}" />
+                    <!-- Modal Header -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="{Binding EditorTitle}" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="Enter details below to update the inventory catalog." FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,2,0,0" />
+                        </StackPanel>
+                        <!-- Close button -->
+                        <Button Grid.Column="1" Command="{Binding CloseFormCommand}" Content="✕" Style="{StaticResource OutlineButton}" Padding="8,4" FontSize="12" />
+                    </Grid>
 
                     <!-- Flavor Name -->
-                    <TextBlock Text="Item / Flavor Name" FontWeight="SemiBold" Margin="0,0,0,4" />
-                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" />
+                    <TextBlock Text="Flavor / Item Name" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
+                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,14" />
 
-                    <Grid Margin="0,0,0,12">
+                    <!-- Category & Unit -->
+                    <Grid Margin="0,0,0,14">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <!-- Flavor Category -->
+                        <!-- Category -->
                         <StackPanel Grid.Column="0" Margin="0,0,8,0">
-                            <TextBlock Text="Category" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBlock Text="Flavor Category" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                             <ComboBox ItemsSource="{Binding Categories}"
                                       SelectedItem="{Binding FormCategory}"
                                       Height="38" />
@@ -176,12 +348,13 @@
 
                         <!-- Unit -->
                         <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                            <TextBlock Text="Unit (scoop, tub, etc.)" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBlock Text="Unit of Measure" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                             <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormUnit, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                     </Grid>
 
-                    <Grid Margin="0,0,0,12">
+                    <!-- Price & Stock Quantity -->
+                    <Grid Margin="0,0,0,14">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
@@ -189,37 +362,37 @@
 
                         <!-- Price -->
                         <StackPanel Grid.Column="0" Margin="0,0,8,0">
-                            <TextBlock Text="Price ($)" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBlock Text="Selling Price ($)" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                             <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormPrice, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
 
                         <!-- Quantity -->
                         <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                            <TextBlock Text="Stock Quantity" FontWeight="SemiBold" Margin="0,0,0,4" />
+                            <TextBlock Text="Available Stock Count" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                             <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormQuantity, UpdateSourceTrigger=PropertyChanged}" />
                         </StackPanel>
                     </Grid>
 
                     <!-- Description -->
-                    <TextBlock Text="Description" FontWeight="SemiBold" Margin="0,0,0,4" />
+                    <TextBlock Text="Description &amp; Tasting Notes" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                     <TextBox Style="{StaticResource ModernTextBox}"
                              Text="{Binding FormDescription, UpdateSourceTrigger=PropertyChanged}"
-                             Height="60"
+                             Height="65"
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
-                             Margin="0,0,0,20" />
+                             Margin="0,0,0,24" />
 
-                    <!-- Dialog Actions -->
+                    <!-- Dialog Action Buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Style="{StaticResource OutlineButton}"
                                 Command="{Binding CloseFormCommand}"
                                 Content="Cancel"
                                 Margin="0,0,10,0"
-                                Padding="16,8" />
+                                Padding="18,8" />
                         <Button Style="{StaticResource PrimaryButton}"
                                 Command="{Binding SaveFormCommand}"
-                                Content="Save Item"
-                                Padding="20,8" />
+                                Content="Save Flavor Record"
+                                Padding="22,8" />
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -6,75 +6,189 @@
              xmlns:viewmodels="clr-namespace:Creamy.WPF.ViewModels"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewmodels:CustomerViewModel}"
-             d:DesignHeight="700" d:DesignWidth="1000"
+             d:DesignHeight="750" d:DesignWidth="1050"
              Background="{StaticResource MainBgBrush}">
 
-    <Grid Margin="24">
-        <!-- Main Customer Content Area -->
+    <Grid Margin="28,24,28,24">
+        <!-- Main Customer Container -->
         <Grid>
             <Grid.RowDefinitions>
+                <!-- Row 0: KPI Summary Metric Cards -->
                 <RowDefinition Height="Auto" />
+                <!-- Row 1: Search & Actions Bar -->
                 <RowDefinition Height="Auto" />
+                <!-- Row 2: Status Toast Banner -->
+                <RowDefinition Height="Auto" />
+                <!-- Row 3: Customers DataGrid Card -->
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!-- Top Header & Actions -->
-            <Grid Grid.Row="0" Margin="0,0,0,16">
+            <!-- ==================== 1. KPI SUMMARY METRIC CARDS ==================== -->
+            <Grid Grid.Row="0" Margin="0,0,0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="Customer Records" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
-                    <TextBlock Text="Manage customer contact profiles, preferences, and addresses." FontSize="13" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0" />
-                </StackPanel>
+                <!-- KPI Card 1: Total Customers -->
+                <Border Grid.Column="0" Margin="0,0,12,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="TOTAL CUSTOMERS" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding TotalCustomersCount}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#e0e7ff" VerticalAlignment="Center">
+                            <TextBlock Text="👥" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
 
-                <!-- Search & Actions -->
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBox Style="{StaticResource ModernTextBox}"
-                             Width="240"
-                             Margin="0,0,10,0"
-                             Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.InputBindings>
-                            <KeyBinding Key="Return" Command="{Binding SearchCommand}" />
-                        </TextBox.InputBindings>
-                    </TextBox>
+                <!-- KPI Card 2: Contactable Phone -->
+                <Border Grid.Column="1" Margin="6,0,6,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="PHONE ON FILE" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding VerifiedPhoneCount}" FontSize="24" FontWeight="Bold" Foreground="#059669" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#ecfdf5" VerticalAlignment="Center">
+                            <TextBlock Text="📞" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
 
-                    <Button Style="{StaticResource OutlineButton}"
-                            Command="{Binding SearchCommand}"
-                            Content="🔍 Search"
-                            Margin="0,0,14,0"
-                            Padding="12,8" />
+                <!-- KPI Card 3: Email Profiles -->
+                <Border Grid.Column="2" Margin="6,0,6,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="EMAIL RECORDS" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding EmailSubscribersCount}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#eff6ff" VerticalAlignment="Center">
+                            <TextBlock Text="✉️" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
 
-                    <!-- Add Customer Button (Allowed for All Roles) -->
-                    <Button Style="{StaticResource PrimaryButton}"
-                            Command="{Binding OpenCreateDialogCommand}"
-                            Content="+ Add Customer" />
-                </StackPanel>
+                <!-- KPI Card 4: Dietary Notes / Allergens -->
+                <Border Grid.Column="3" Margin="12,0,0,0" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,16">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="16" ShadowDepth="2" Opacity="0.04" Color="#0f172a" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="SPECIAL PREFERENCES" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock Text="{Binding SpecialNotesCount}" FontSize="24" FontWeight="Bold" Foreground="#d97706" Margin="0,4,0,0" />
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="40" Height="40" CornerRadius="10" Background="#fffbeb" VerticalAlignment="Center">
+                            <TextBlock Text="⭐" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+                </Border>
             </Grid>
 
-            <!-- Message / Error Notification Banner -->
-            <Border Grid.Row="1"
-                    CornerRadius="6"
+            <!-- ==================== 2. SEARCH & ACTIONS BAR ==================== -->
+            <Border Grid.Row="1" Background="White" CornerRadius="12" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="18,14" Margin="0,0,0,18">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="14" ShadowDepth="2" Opacity="0.03" Color="#0f172a" />
+                </Border.Effect>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Title summary -->
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,24,0">
+                        <TextBlock Text="Customer Directory" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                        <TextBlock Text="Search customer loyalty profiles, dietary notes, and contacts" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" />
+                    </StackPanel>
+
+                    <!-- Right Controls -->
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!-- Search Box -->
+                        <TextBox Style="{StaticResource ModernTextBox}"
+                                 Width="240"
+                                 Margin="0,0,10,0"
+                                 Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding SearchCommand}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+
+                        <!-- Search Button -->
+                        <Button Style="{StaticResource OutlineButton}"
+                                Command="{Binding SearchCommand}"
+                                Content="🔍 Search"
+                                Margin="0,0,10,0"
+                                Height="38" />
+
+                        <!-- Refresh Button -->
+                        <Button Style="{StaticResource OutlineButton}"
+                                Command="{Binding RefreshCommand}"
+                                Content="🔄"
+                                ToolTip="Reload Customer Directory from API"
+                                Margin="0,0,12,0"
+                                Height="38" />
+
+                        <!-- Add Customer Primary Button (All roles) -->
+                        <Button Style="{StaticResource PrimaryButton}"
+                                Command="{Binding OpenCreateDialogCommand}"
+                                Content="+ Add Customer"
+                                Height="38"
+                                ToolTip="Register New Customer Profile" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ==================== 3. NOTIFICATION BANNER ==================== -->
+            <Border Grid.Row="2"
+                    CornerRadius="8"
                     Padding="14,10"
-                    Margin="0,0,0,16"
+                    Margin="0,0,0,14"
                     Visibility="{Binding HasMessage, Converter={StaticResource BoolToVisConverter}}">
                 <Border.Style>
                     <Style TargetType="Border">
-                        <Setter Property="Background" Value="#ecfdf5" />
-                        <Setter Property="BorderBrush" Value="#a7f3d0" />
+                        <Setter Property="Background" Value="{StaticResource SuccessBgBrush}" />
+                        <Setter Property="BorderBrush" Value="{StaticResource SuccessBorderBrush}" />
                         <Setter Property="BorderThickness" Value="1" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsErrorMessage}" Value="True">
-                                <Setter Property="Background" Value="#fef2f2" />
-                                <Setter Property="BorderBrush" Value="#fecaca" />
+                                <Setter Property="Background" Value="{StaticResource DangerBgBrush}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource DangerBorderBrush}" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
 
-                <TextBlock Text="{Binding Message}" FontWeight="Medium" FontSize="13">
+                <TextBlock Text="{Binding Message}" FontWeight="SemiBold" FontSize="12.5">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="Foreground" Value="{StaticResource SuccessBrush}" />
@@ -88,37 +202,88 @@
                 </TextBlock>
             </Border>
 
-            <!-- Customers DataGrid -->
-            <Border Grid.Row="2" Background="White" CornerRadius="8" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <!-- ==================== 4. CUSTOMERS DATAGRID CARD ==================== -->
+            <Border Grid.Row="3" Background="White" CornerRadius="14" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" ClipToBounds="True">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="18" ShadowDepth="3" Opacity="0.04" Color="#0f172a" />
+                </Border.Effect>
+
                 <DataGrid ItemsSource="{Binding Customers}"
                           SelectedItem="{Binding SelectedCustomer}"
                           AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="60" />
-                        <DataGridTextColumn Header="Customer Name" Binding="{Binding Name}" Width="1.8*" />
-                        <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="1.2*" />
-                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*" />
-                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="2*" />
-                        <DataGridTextColumn Header="Notes / Preferences" Binding="{Binding Notes}" Width="2*" />
+                        <!-- ID -->
+                        <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="50" />
 
-                        <!-- Row Actions -->
-                        <DataGridTemplateColumn Header="Actions" Width="170">
+                        <!-- Customer Name with Initials Avatar -->
+                        <DataGridTemplateColumn Header="CUSTOMER NAME" Width="2.2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <!-- Edit button: Allowed for All Roles -->
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <!-- Avatar Circle -->
+                                        <Border Width="32" Height="32" CornerRadius="16" Background="{Binding AvatarBg}" Margin="0,0,10,0" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Initials}" FontWeight="Bold" FontSize="11.5" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" FontSize="13" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Phone -->
+                        <DataGridTemplateColumn Header="PRIMARY PHONE" Width="1.4*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Phone}" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" VerticalAlignment="Center" FontSize="12.5" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Email -->
+                        <DataGridTemplateColumn Header="EMAIL ADDRESS" Width="1.8*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DisplayEmail}" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Center" FontSize="12" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Address -->
+                        <DataGridTemplateColumn Header="DELIVERY ADDRESS" Width="2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DisplayAddress}" Foreground="{StaticResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="12" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Notes / Preferences -->
+                        <DataGridTemplateColumn Header="NOTES &amp; ALLERGENS" Width="1.8*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DisplayNotes}" Foreground="{StaticResource TextSecondaryBrush}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="11.5" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <!-- Actions (Edit & Delete) -->
+                        <DataGridTemplateColumn Header="ACTIONS" Width="170">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <!-- Edit button (All roles) -->
                                         <Button Style="{StaticResource OutlineButton}"
                                                 Command="{Binding DataContext.OpenEditDialogCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                Content="Edit"
+                                                Content="✏️ Edit"
                                                 Margin="0,0,6,0"
                                                 Padding="10,4" />
 
-                                        <!-- Delete button: Allowed for Owner Only -->
+                                        <!-- Delete button (Owner only) -->
                                         <Button Style="{StaticResource DangerButton}"
                                                 Command="{Binding DataContext.DeleteCustomerCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                Content="Delete"
+                                                Content="🗑️ Delete"
                                                 IsEnabled="{Binding DataContext.CanDeleteCustomer, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                                ToolTip="Delete customer (Owner role only)" />
+                                                ToolTip="Delete customer profile (Owner role only)" />
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
@@ -128,60 +293,84 @@
             </Border>
         </Grid>
 
-        <!-- Add / Edit Customer Modal Dialog Overlay -->
-        <Grid Background="#80000000"
+        <!-- ==================== 5. ADD / EDIT CUSTOMER MODAL OVERLAY ==================== -->
+        <Grid Background="#700f172a"
               Visibility="{Binding IsEditorOpen, Converter={StaticResource BoolToVisConverter}}"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
             <Border Background="White"
-                    CornerRadius="10"
-                    Width="480"
-                    Padding="28"
+                    CornerRadius="16"
+                    Width="520"
+                    Padding="32"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="25" ShadowDepth="6" Opacity="0.25" Color="#000000" />
+                    <DropShadowEffect BlurRadius="35" ShadowDepth="8" Opacity="0.25" Color="#000000" />
                 </Border.Effect>
 
                 <StackPanel>
-                    <TextBlock Text="{Binding EditorTitle}" FontSize="18" FontWeight="Bold" Margin="0,0,0,16" Foreground="{StaticResource TextPrimaryBrush}" />
+                    <!-- Modal Header -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="{Binding EditorTitle}" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}" />
+                            <TextBlock Text="Enter customer details to register or update profile." FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,2,0,0" />
+                        </StackPanel>
+                        <!-- Close button -->
+                        <Button Grid.Column="1" Command="{Binding CloseFormCommand}" Content="✕" Style="{StaticResource OutlineButton}" Padding="8,4" FontSize="12" />
+                    </Grid>
 
-                    <!-- Name -->
-                    <TextBlock Text="Full Name" FontWeight="SemiBold" Margin="0,0,0,4" />
-                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" />
+                    <!-- Full Name -->
+                    <TextBlock Text="Customer Full Name" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
+                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,14" />
 
-                    <!-- Phone -->
-                    <TextBlock Text="Phone Number" FontWeight="SemiBold" Margin="0,0,0,4" />
-                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormPhone, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" />
+                    <!-- Phone & Email -->
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                    <!-- Email -->
-                    <TextBlock Text="Email Address (Optional)" FontWeight="SemiBold" Margin="0,0,0,4" />
-                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormEmail, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" />
+                        <!-- Phone -->
+                        <StackPanel Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Text="Primary Phone" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
+                            <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormPhone, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Email -->
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                            <TextBlock Text="Email Address (Optional)" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
+                            <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormEmail, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
 
                     <!-- Address -->
-                    <TextBlock Text="Address (Optional)" FontWeight="SemiBold" Margin="0,0,0,4" />
-                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormAddress, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,12" />
+                    <TextBlock Text="Delivery / Shipping Address" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
+                    <TextBox Style="{StaticResource ModernTextBox}" Text="{Binding FormAddress, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,14" />
 
-                    <!-- Notes -->
-                    <TextBlock Text="Notes / Preferences (Optional)" FontWeight="SemiBold" Margin="0,0,0,4" />
+                    <!-- Notes / Dietary Preferences -->
+                    <TextBlock Text="Preferences, Allergies &amp; Notes" FontWeight="SemiBold" FontSize="12.5" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,4" />
                     <TextBox Style="{StaticResource ModernTextBox}"
                              Text="{Binding FormNotes, UpdateSourceTrigger=PropertyChanged}"
-                             Height="60"
+                             Height="65"
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
-                             Margin="0,0,0,20" />
+                             Margin="0,0,0,24" />
 
-                    <!-- Dialog Actions -->
+                    <!-- Dialog Action Buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button Style="{StaticResource OutlineButton}"
                                 Command="{Binding CloseFormCommand}"
                                 Content="Cancel"
                                 Margin="0,0,10,0"
-                                Padding="16,8" />
+                                Padding="18,8" />
                         <Button Style="{StaticResource PrimaryButton}"
                                 Command="{Binding SaveFormCommand}"
                                 Content="Save Customer"
-                                Padding="20,8" />
+                                Padding="22,8" />
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -20,12 +20,31 @@ namespace Creamy.WPF.Models
         public bool IsManager => string.Equals(Role, "manager", StringComparison.OrdinalIgnoreCase);
         public bool IsCashier => string.Equals(Role, "cashier", StringComparison.OrdinalIgnoreCase);
 
-        public string RoleDisplayName => Role switch
+        public string RoleDisplayName => Role?.ToLowerInvariant() switch
         {
             "owner" => "Store Owner",
             "manager" => "Store Manager",
             "cashier" => "Cashier",
-            _ => Role
+            _ => Role ?? "Staff"
         };
+
+        public string RoleEmoji => Role?.ToLowerInvariant() switch
+        {
+            "owner" => "👑",
+            "manager" => "👔",
+            "cashier" => "🛒",
+            _ => "👤"
+        };
+
+        public string Initials
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Name)) return "U";
+                var parts = Name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length == 1) return parts[0][0].ToString().ToUpperInvariant();
+                return $"{parts[0][0]}{parts[^1][0]}".ToUpperInvariant();
+            }
+        }
     }
 }
