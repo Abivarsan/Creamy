@@ -22,8 +22,8 @@
   </defs>
 
   <!-- Title -->
-  <text x="500" y="45" text-anchor="middle" fill="#f8fafc" font-size="24" font-weight="700" letter-spacing="1">DELIVERGATE ICE CREAM SHOP - ENTITY RELATIONSHIP DIAGRAM</text>
-  <text x="500" y="72" text-anchor="middle" fill="#94a3b8" font-size="14">Option B: Laravel Backend Database Architecture</text>
+  <text x="500" y="45" text-anchor="middle" fill="#f8fafc" font-size="24" font-weight="700" letter-spacing="1">CREAMY ICE CREAM SHOP - ENTITY RELATIONSHIP DIAGRAM</text>
+
 
   <!-- USERS Table -->
   <g transform="translate(50, 110)" filter="url(#shadow)">
