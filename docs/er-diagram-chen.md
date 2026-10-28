@@ -10,9 +10,11 @@ While the Crow's Foot notation ([`docs/er-diagram.svg`](er-diagram.svg) and [`do
 - **Relationships** as named semantic associations between entities.
 - **Cardinality Ratios** specifying mapping constraints (`1:1`, `1:N`, `M:N`).
 
-> 💡 **Vector Diagram Asset**:  
-> A high-resolution, presentation-ready vector graphic of this Chen diagram is available at:  
-> 🔗 **[`docs/er-diagram-chen.svg`](er-diagram-chen.svg)**
+
+> 📦 **Available Diagram Assets**:  
+> - **Printable PDF**: 📄 **[`docs/er-diagram-chen.pdf`](er-diagram-chen.pdf)** *(High-resolution vector PDF export)*  
+> - **Vector SVG**: 🎨 **[`docs/er-diagram-chen.svg`](er-diagram-chen.svg)** *(Presentation-ready vector graphic)*  
+> - **Crow's Foot Relational Schema**: 🔗 **[`docs/er-diagram.pdf`](er-diagram.pdf)** (PDF) &nbsp;|&nbsp; 🔗 **[`docs/er-diagram.svg`](er-diagram.svg)** (SVG) &nbsp;|&nbsp; 🔗 **[`docs/er-diagram.md`](er-diagram.md)** (Relational Data Dictionary)
 
 ---
 

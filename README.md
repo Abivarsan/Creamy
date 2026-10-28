@@ -40,8 +40,10 @@ Creamy/
 │   └── README.md                        # Dedicated C# WPF desktop documentation
 │
 ├── docs/                                # Project-wide deliverables
+│   ├── er-diagram.pdf                   # Crow's Foot vector PDF ER diagram
 │   ├── er-diagram.svg                   # Crow's Foot vector SVG ER diagram
 │   ├── er-diagram.md                    # Crow's Foot data dictionary & schema
+│   ├── er-diagram-chen.pdf              # Chen notation vector PDF ER diagram
 │   ├── er-diagram-chen.svg              # Chen notation vector SVG ER diagram
 │   ├── er-diagram-chen.md               # Chen notation guide & draw.io tutorial
 │   └── Creamy_Ice_Cream_Shop_API.postman_collection.json # Ready-to-import Postman collection
@@ -157,6 +159,6 @@ Per Section 10 of the assessment instructions:
 - [x] **Source Code**: Public GitHub repository structure with clean commit history.
 - [x] **Postman API Collection**: Included at [`docs/Creamy_Ice_Cream_Shop_API.postman_collection.json`](docs/Creamy_Ice_Cream_Shop_API.postman_collection.json).
 - [x] **ER Diagrams**: 
-  - **Crow's Foot Notation**: [`docs/er-diagram.svg`](docs/er-diagram.svg) & [`docs/er-diagram.md`](docs/er-diagram.md)
-  - **Chen Notation**: [`docs/er-diagram-chen.svg`](docs/er-diagram-chen.svg) & [`docs/er-diagram-chen.md`](docs/er-diagram-chen.md) (with draw.io manual guide)
+  - **Crow's Foot Notation**: [`docs/er-diagram.pdf`](docs/er-diagram.pdf) (PDF) & [`docs/er-diagram.svg`](docs/er-diagram.svg) (SVG) | [`docs/er-diagram.md`](docs/er-diagram.md)
+  - **Chen Notation**: [`docs/er-diagram-chen.pdf`](docs/er-diagram-chen.pdf) (PDF) & [`docs/er-diagram-chen.svg`](docs/er-diagram-chen.svg) (SVG) | [`docs/er-diagram-chen.md`](docs/er-diagram-chen.md) (with draw.io manual guide)
 - [x] **C# WPF Application**: Fully implemented under `C#_WPF_Application/`.

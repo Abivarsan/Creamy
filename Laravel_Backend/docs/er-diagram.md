@@ -1,9 +1,17 @@
-# Cramy Ice Cream Shop Management System - Database Design & ER Diagram
+# Creamy Ice Cream Shop Management System - Database Design & ER Diagram (Crow's Foot Notation)
 
 ## 1. Overview
-This document specifies the database schema and Entity-Relationship (ER) model for the Delivergate Ice Cream Shop backend.
+This document specifies the physical database schema and Entity-Relationship (ER) model for the Creamy Ice Cream Shop backend assessment using **Crow's Foot Notation**.
 
 The database is designed with high data integrity, strict typing, indexing on frequently queried columns (such as names, phone numbers, and categories for search optimization), and built-in support for token-based authentication (Laravel Sanctum).
+
+> 📦 **Available Diagram Formats**:  
+> - **Printable PDF**: 📄 **[`docs/er-diagram.pdf`](er-diagram.pdf)** *(High-resolution vector PDF export)*  
+> - **Vector SVG**: 🎨 **[`docs/er-diagram.svg`](er-diagram.svg)** *(Crisp vector graphic)*  
+>
+> 💡 **Looking for Chen Notation?**  
+> We also provide the complete conceptual ER model in **Peter Chen's Notation (1976)** with standalone vector graphics and draw.io recreation instructions:  
+> 🔗 **[`docs/er-diagram-chen.pdf`](er-diagram-chen.pdf)** (PDF) &nbsp;|&nbsp; 🔗 **[`docs/er-diagram-chen.svg`](er-diagram-chen.svg)** (SVG) &nbsp;|&nbsp; 🔗 **[`docs/er-diagram-chen.md`](er-diagram-chen.md)** (Full Guide)
 
 ---
 
