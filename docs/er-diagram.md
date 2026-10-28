@@ -1,7 +1,7 @@
-# Delivergate Ice Cream Shop Management System - Database Design & ER Diagram (Crow's Foot Notation)
+# Creamy Ice Cream Shop Management System - Database Design & ER Diagram (Crow's Foot Notation)
 
 ## 1. Overview
-This document specifies the physical database schema and Entity-Relationship (ER) model for the Delivergate Ice Cream Shop backend assessment using **Crow's Foot Notation**.
+This document specifies the physical database schema and Entity-Relationship (ER) model for the Creamy Ice Cream Shop backend assessment using **Crow's Foot Notation**.
 
 The database is designed with high data integrity, strict typing, indexing on frequently queried columns (such as names, phone numbers, and categories for search optimization), and built-in support for token-based authentication (Laravel Sanctum).
 
