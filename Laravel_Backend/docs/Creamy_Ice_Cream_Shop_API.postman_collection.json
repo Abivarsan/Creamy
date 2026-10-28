@@ -1,8 +1,8 @@
 {
 	"info": {
 		"_postman_id": "c88f3e5b-4d7a-4c91-a67b-12a8435d7990",
-		"name": "Delivergate Ice Cream Shop API (Creamy)",
-		"description": "Postman API Collection for Delivergate Backend Engineer Intern Practical Exam (Option B: Laravel).\n\nFeatures:\n- Authentication via Laravel Sanctum (Owner, Manager, Cashier)\n- Role-Based Access Control (RBAC)\n- Inventory Management CRUD with Name & Category Search\n- Customer Management CRUD with Search\n- Automated bearer token assignment on login",
+		"name": "Creamy Ice Cream Shop API ",
+		"description": "Postman API Collection for Creamy Backend.\n\nFeatures:\n- Authentication via Laravel Sanctum (Owner, Manager, Cashier)\n- Role-Based Access Control (RBAC)\n- Inventory Management CRUD with Name & Category Search\n- Customer Management CRUD with Search\n- Automated bearer token assignment on login",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
